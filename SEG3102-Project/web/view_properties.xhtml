@@ -1,14 +1,57 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
 
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                View Properties
+                <h:form>
+                    <h:inputText value="" />
+                    <h:commandButton value="SEARCH" action="search" />
+                </h:form>
+                <br></br>
+                <h:dataTable value="#{customer.visitingList}" var="property" cellspacing="0" cellpadding="5"
+                             styleClass="employeeTable"
+                             headerClass="employeeTableHeader"
+                             rowClasses="employeeTableOddRow,employeeTableEvenRow" border="1">
+                    <h:column>    				
+                       <f:facet name="header">Photos</f:facet>    				
+                       #{property.photos}
+                    </h:column>
+                    <h:column>
+                       <f:facet name="header">Type</f:facet>
+                       #{property.type}
+                    </h:column>
+                    <h:column>
+                       <f:facet name="header">Address</f:facet>
+                       #{property.address}
+                    </h:column>
+                    <h:column>
+                       <f:facet name="header">Location</f:facet>
+                       #{property.location}
+                    </h:column>
+                    <h:column>
+                       <f:facet name="header">Bedrooms</f:facet>
+                       #{property.bedrooms}
+                    </h:column>
+                    <h:column>
+                       <f:facet name="header">Bathrooms</f:facet>
+                       #{property.bathrooms}
+                    </h:column>
+                    <h:column>
+                       <f:facet name="header">Other Rooms</f:facet>
+                       #{property.other}
+                    </h:column>
+                    <h:column>
+                       <f:facet name="header">Rent</f:facet>
+                       #{property.rent}
+                    </h:column>
+                </h:dataTable>
             </ui:define>
 
         </ui:composition>
