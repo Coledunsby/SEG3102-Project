@@ -20,20 +20,20 @@ public class Owner implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long oid;
 
     public Long getId() {
-        return id;
+        return oid;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.oid = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (oid != null ? oid.hashCode() : 0);
         return hash;
     }
 
@@ -44,7 +44,7 @@ public class Owner implements Serializable {
             return false;
         }
         Owner other = (Owner) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.oid == null && other.oid != null) || (this.oid != null && !this.oid.equals(other.oid))) {
             return false;
         }
         return true;
@@ -52,7 +52,7 @@ public class Owner implements Serializable {
 
     @Override
     public String toString() {
-        return "dbaccess.persistence.Owner[ id=" + id + " ]";
+        return "dbaccess.persistence.Owner[ id=" + oid + " ]";
     }
     
 }

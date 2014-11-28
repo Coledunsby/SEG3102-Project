@@ -20,20 +20,20 @@ public class Agent implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long aid;
 
     public Long getId() {
-        return id;
+        return aid;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.aid = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (aid != null ? aid.hashCode() : 0);
         return hash;
     }
 
@@ -44,7 +44,7 @@ public class Agent implements Serializable {
             return false;
         }
         Agent other = (Agent) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.aid == null && other.aid != null) || (this.aid != null && !this.aid.equals(other.aid))) {
             return false;
         }
         return true;
@@ -52,7 +52,7 @@ public class Agent implements Serializable {
 
     @Override
     public String toString() {
-        return "dbaccess.persistence.Agent[ id=" + id + " ]";
+        return "dbaccess.persistence.Agent[ id=" + aid + " ]";
     }
     
 }

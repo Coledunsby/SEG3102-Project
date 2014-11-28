@@ -20,20 +20,20 @@ public class Rental implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long rid;
 
     public Long getId() {
-        return id;
+        return rid;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.rid = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (rid != null ? rid.hashCode() : 0);
         return hash;
     }
 
@@ -44,7 +44,7 @@ public class Rental implements Serializable {
             return false;
         }
         Rental other = (Rental) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.rid == null && other.rid != null) || (this.rid != null && !this.rid.equals(other.rid))) {
             return false;
         }
         return true;
@@ -52,7 +52,7 @@ public class Rental implements Serializable {
 
     @Override
     public String toString() {
-        return "dbaccess.persistence.Rental[ id=" + id + " ]";
+        return "dbaccess.persistence.Rental[ id=" + rid + " ]";
     }
     
 }

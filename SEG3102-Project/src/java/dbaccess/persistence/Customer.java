@@ -20,20 +20,29 @@ public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long cid;
+    private double maxRent;
 
     public Long getId() {
-        return id;
+        return cid;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.cid = id;
+    }
+    
+    public double getMaxRent(){
+        return maxRent;
+    }
+    
+    public void setMaxRent(double maxRent){
+        this.maxRent = maxRent;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (cid != null ? cid.hashCode() : 0);
         return hash;
     }
 
@@ -44,7 +53,7 @@ public class Customer implements Serializable {
             return false;
         }
         Customer other = (Customer) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.cid == null && other.cid != null) || (this.cid != null && !this.cid.equals(other.cid))) {
             return false;
         }
         return true;
@@ -52,7 +61,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "dbaccess.persistence.Customer[ id=" + id + " ]";
+        return "dbaccess.persistence.Customer[ id=" + cid + " ]";
     }
     
 }
