@@ -20,22 +20,22 @@
             <div id="left">
                 <ui:insert name="left">
                     <!-- Not logged in
-                    <a href="./">Login</a><br></br>
-                    <a href="./">Create Account</a>
+                    <li><h:link value="Login" outcome="login" /></li>
+                    <li><h:link value="Create Account" outcome="create_account" /></li>
                     -->
                     
                     <!-- Customer -->
-                    <a href="./">Home</a><br></br>
-                    <a href="./">View Account</a><br></br>
-                    <a href="./">View Visiting List</a><br></br>
-                    <a href="./">View Properties</a><br></br>
-                    <a href="./">Logout</a>
+                    <li><h:link value="Home" outcome="index" /></li>
+                    <li><h:link value="View Account" outcome="view_account" /></li>
+                    <li><h:link value="View Visiting List" outcome="view_visiting_list" /></li>
+                    <li><h:link value="View Properties" outcome="view_properties" /></li>
+                    <li><h:link value="Logout" outcome="index" /></li>
                     
                     <!-- Owner
-                    <a href="./">Home</a><br></br>
-                    <a href="./">View Account</a><br></br>
-                    <a href="./">View Properties</a><br></br>
-                    <a href="./">Logout</a>
+                    <li><h:link value="Home" outcome="index" /></li>
+                    <li><h:link value="View Account" outcome="view_account" /></li>
+                    <li><h:link value="View Properties" outcome="view_properties" /></li>
+                    <li><h:link value="Logout" outcome="index" /></li>
                     -->
                 </ui:insert>
             </div>
