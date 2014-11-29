@@ -10,23 +10,29 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h:panelGrid id="panel" columns="2" border="1" cellpadding="5" cellspacing="0">
-                    
-                    <f:facet name="header">
-                        <h:outputText value="Login"/>
-                    </f:facet>
-                    
-                    <h:outputLabel for="username" value="Username:" />
-                    <h:inputText id="username" value="#{user.username}" />
-                    
-                    <h:outputLabel for="password" value="Password:" />
-                    <h:inputText id="password" value="#{user.password}" />
-                    
-                    <f:facet name="footer">
-                        <h:commandButton id="submit" value="Login" style="width: 100%;" />
-                    </f:facet>
-                    
-                </h:panelGrid>
+                <h1>Login</h1>
+                <f:view>
+                    <h:form prependId="false">
+                        <h:panelGrid columns="3">
+
+                            <h:outputText value="Username"></h:outputText>
+                            <h:inputText id="username" value="#{userData.username}" required="true" requiredMessage="Please enter a Username.">
+                                <f:validator validatorId="usernameValidator"/>
+                            </h:inputText>
+                            <h:message id="usernameMsg" for="username" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Password"></h:outputText>
+                            <h:inputText id="password" value="#{userData.password}" required="true" requiredMessage="Please enter a Password."></h:inputText>
+                            <h:message id="passwordMsg" for="password" errorStyle="color:red; display:block"/>
+
+                        </h:panelGrid>
+
+                        <h:commandButton value="Create Account" type="command" actionListener="#{lookupControl.add}">
+                            <f:ajax execute="username password" render="usernameMsg passwordMsg"/>
+                        </h:commandButton>
+                        <h:commandButton value="Reset" type="reset" />
+                    </h:form>
+                </f:view>
             </ui:define>
 
         </ui:composition>

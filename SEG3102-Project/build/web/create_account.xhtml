@@ -11,51 +11,51 @@
             
             <ui:define name="content">
                 <h1>Create Account</h1>
-                    <f:view>
-                        <h:form prependId="false">
-                            <h:panelGrid columns="3">
-                                
-                                <h:outputText value="Username"></h:outputText>
-                                <h:inputText id="username" value="#{user.username}" required="true" requiredMessage="Please enter a Username.">
-                                    <f:validator validatorId="usernameValidator"/>
-                                </h:inputText>
-                                <h:message id="usernameMsg" for="username" errorStyle="color:red; display:block"/>
-                                
-                                <h:outputText value="Password"></h:outputText>
-                                <h:inputText id="password" value="#{user.password}" required="true" requiredMessage="Please enter a Password."></h:inputText>
-                                <h:message id="passwordMsg" for="password" errorStyle="color:red; display:block"/>
-                                
-                                <h:outputText value="Given Name"></h:outputText>
-                                <h:inputText id="given_name" value="#{user.given_name}" required="true" requiredMessage="Please enter a Given Name."></h:inputText>
-                                <h:message id="given_namedMsg" for="given_name" errorStyle="color:red; display:block"/>
-                                
-                                <h:outputText value="Last Name"></h:outputText>
-                                <h:inputText id="last_name" value="#{user.last_name}" required="true" requiredMessage="Please enter a Last Name."></h:inputText>
-                                <h:message id="last_nameMsg" for="last_name" errorStyle="color:red; display:block"/>
-                                
-                                <h:outputText value="Email"></h:outputText>
-                                <h:inputText id="email" value="#{user.email}" required="true" requiredMessage="Please enter an Email."></h:inputText>
-                                <h:message id="emailMsg" for="email" errorStyle="color:red; display:block"/>
-                                
-                                <h:outputText value="Type"></h:outputText>
-                                <h:selectOneMenu id="type" value="#{user.type}">
-                                    <f:selectItem itemValue="customer" itemLabel="Customer" />
-                                    <f:selectItem itemValue="owner" itemLabel="Owner" />
-                                </h:selectOneMenu>
-                                <h:message id="typeMsg" for="type" errorStyle="color:red; display:block"/>
-                                
-                                <h:outputText value="Max Rent"></h:outputText>
-                                <h:inputText id="max_rent" value="#{user.max_rent}" required="true" requiredMessage="Please enter a Max Rent."></h:inputText>
-                                <h:message id="max_rentMsg" for="max_rent" errorStyle="color:red; display:block"/>
+                <f:view>
+                    <h:form prependId="false">
+                        <h:panelGrid columns="3">
 
-                            </h:panelGrid>
-                            
-                            <h:commandButton value="Create Account" type="command" actionListener="#{lookupControl.add}">
-                                <f:ajax execute="username password given_name last_name email max_rent" render="usernameMsg passwordMsg given_nameMsg last_nameMsg emailMsg max_rentMsg"/>
-                            </h:commandButton>
-                            <h:commandButton value="Reset" type="reset" />
-                        </h:form>
-                    </f:view>
+                            <h:outputText value="Username"></h:outputText>
+                            <h:inputText id="username" value="#{userData.username}" required="true" requiredMessage="Please enter a Username.">
+                                <f:validator validatorId="usernameValidator"/>
+                            </h:inputText>
+                            <h:message id="usernameMsg" for="username" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Password"></h:outputText>
+                            <h:inputText id="password" value="#{userData.password}" required="true" requiredMessage="Please enter a Password."></h:inputText>
+                            <h:message id="passwordMsg" for="password" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Given Name"></h:outputText>
+                            <h:inputText id="given_name" value="#{userData.givenName}" required="true" requiredMessage="Please enter a Given Name."></h:inputText>
+                            <h:message id="given_nameMsg" for="given_name" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Last Name"></h:outputText>
+                            <h:inputText id="last_name" value="#{userData.lastName}" required="true" requiredMessage="Please enter a Last Name."></h:inputText>
+                            <h:message id="last_nameMsg" for="last_name" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Email"></h:outputText>
+                            <h:inputText id="email" value="#{userData.email}" required="true" requiredMessage="Please enter an Email."></h:inputText>
+                            <h:message id="emailMsg" for="email" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Type"></h:outputText>
+                            <h:selectOneMenu id="type" value="#{userData.type}">
+                                <f:selectItem itemValue="customer" itemLabel="Customer" />
+                                <f:selectItem itemValue="owner" itemLabel="Owner" />
+                            </h:selectOneMenu>
+                            <h:message id="typeMsg" for="type" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Max Rent"></h:outputText>
+                            <h:inputText id="max_rent" value="#{userData.maxRent}" required="true" requiredMessage="Please enter a Max Rent."></h:inputText>
+                            <h:message id="max_rentMsg" for="max_rent" errorStyle="color:red; display:block"/>
+
+                        </h:panelGrid>
+
+                        <h:commandButton value="Create Account" type="command" actionListener="#{lookupControl.add}">
+                            <f:ajax execute="username password given_name last_name email max_rent" render="usernameMsg passwordMsg given_nameMsg last_nameMsg emailMsg max_rentMsg"/>
+                        </h:commandButton>
+                        <h:commandButton value="Reset" type="reset" />
+                    </h:form>
+                </f:view>
             </ui:define>
 
         </ui:composition>
