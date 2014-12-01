@@ -6,50 +6,51 @@
 package dbaccess.persistence;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
- * @author Simon
+ * @author User
  */
 @Entity
-public class Rental implements Serializable {
-    
+public class Tenant implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
+    @Id    
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long rid;
-    @OneToMany(mappedBy = "rental")
-    protected Collection<Tenant> tenants;
+    private String id;
+    @OneToOne(mappedBy = "tenant")
+    protected Customer cust;
+    @ManyToOne
+    protected Rental rental;
 
-    public Long getId() {
-        return rid;
+    public String getId() {
+        return id;
     }
 
-    public void setId(Long id) {
-        this.rid = id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (rid != null ? rid.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Rental)) {
+        if (!(object instanceof Tenant)) {
             return false;
         }
-        Rental other = (Rental) object;
-        if ((this.rid == null && other.rid != null) || (this.rid != null && !this.rid.equals(other.rid))) {
+        Tenant other = (Tenant) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -57,7 +58,7 @@ public class Rental implements Serializable {
 
     @Override
     public String toString() {
-        return "dbaccess.persistence.Rental[ id=" + rid + " ]";
+        return "dbaccess.persistence.Tenant[ id=" + id + " ]";
     }
     
 }

@@ -7,36 +7,45 @@ package dbaccess.persistence;
 
 import java.io.Serializable;
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author Simon
  */
 @Entity
+@Table(name="userAccount")
 public class UserAccount implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
+    
+    @Id    
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userID;
+    private String userID;
     private String username;
     private String password;
     private String givenName;
     private String lastName;
     private String email;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date creationDate;
     private Time creationTime;
     private boolean active;
+    @OneToOne
+    private User user;
 
-    public Long getId() {
+    public String getId() {
         return userID;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.userID = id;
     }
 
@@ -102,6 +111,19 @@ public class UserAccount implements Serializable {
     
     public void setActive(boolean active){
         this.active = active;
+    }
+    
+    public User getUser(){
+        return user;
+    }
+    
+    public void setUser(String user, double maxRent){
+        if(user.equals("customer")){
+            this.user = new Customer();
+            this.user.setMaxRent(maxRent);
+        } else{
+            this.user = new Owner();
+        }
     }
     
     @Override
