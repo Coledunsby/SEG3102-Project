@@ -1,4 +1,2 @@
-SEG3102-Project
+SEG3102 Project (Fall 2014)
 ===============
-
-SEG3102-Project
