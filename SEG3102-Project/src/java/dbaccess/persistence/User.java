@@ -23,9 +23,15 @@ import javax.persistence.Table;
 @Inheritance(strategy=JOINED)
 public class User implements Serializable{
     @Id
-    private String id;
+    protected String id;
     @OneToOne(mappedBy = "user")
     protected UserAccount account;
+    
+    public User(){}
+    
+    public User(UserAccount account){
+        this.account = account;
+    }
 
     public void setMaxRent(double maxRent) {
     }
@@ -40,5 +46,9 @@ public class User implements Serializable{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public UserAccount getUserAccount() {
+        return account;
     }
 }

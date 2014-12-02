@@ -12,12 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author User
  */
 @Entity
+@Table(name="VisitingList")
 public class VisitingList implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -57,6 +59,17 @@ public class VisitingList implements Serializable {
     @Override
     public String toString() {
         return "dbaccess.persistence.VisitingList[ id=" + id + " ]";
+    }
+
+    public Collection<Visitation> getVisits(){
+        return visits;
+    }
+    
+    void addProperty(Property property) {
+        Visitation visit = new Visitation();
+        visits.add(visit);
+        visit.setId(Integer.toString(visits.size()));
+        visit.setProperty(property);
     }
     
 }

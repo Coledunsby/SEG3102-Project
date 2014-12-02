@@ -12,12 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author User
  */
 @Entity
+@Table(name="Tenant")
 public class Tenant implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id    
@@ -27,6 +29,11 @@ public class Tenant implements Serializable {
     protected Customer cust;
     @ManyToOne
     protected Rental rental;
+    
+    public Tenant(Customer cust, Rental rental){
+        this.cust = cust;
+        this.rental = rental;
+    }
 
     public String getId() {
         return id;

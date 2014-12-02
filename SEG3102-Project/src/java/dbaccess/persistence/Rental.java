@@ -6,24 +6,32 @@
 package dbaccess.persistence;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Simon
  */
 @Entity
+@Table(name="Rental")
 public class Rental implements Serializable {
     
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long rid;
+    private String email;
+    private double rentAmount;
+    private Date rentalDate;
+    private Time rentalTime;
     @OneToMany(mappedBy = "rental")
     protected Collection<Tenant> tenants;
 
@@ -33,6 +41,14 @@ public class Rental implements Serializable {
 
     public void setId(Long id) {
         this.rid = id;
+    }
+    
+    public Collection<Tenant> getTenants(){
+        return tenants;
+    }
+    
+    public void setTenants(Collection<Tenant> tenants){
+        this.tenants = tenants;
     }
 
     @Override

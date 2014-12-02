@@ -12,12 +12,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Simon
  */
 @Entity
+@Table(name="Agent")
 public class Agent implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,6 +34,18 @@ public class Agent implements Serializable {
 
     public void setId(Long id) {
         this.aid = id;
+    }
+    
+    public Collection<UserAccount> getAccounts(){
+        return accounts;
+    }
+    
+    public void setAccount(Collection<UserAccount> accounts){
+        this.accounts = accounts;
+    }
+    
+    public void addAccount(UserAccount account){
+        accounts.add(account);
     }
 
     @Override

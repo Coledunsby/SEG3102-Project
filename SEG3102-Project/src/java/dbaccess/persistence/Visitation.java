@@ -6,22 +6,26 @@
 package dbaccess.persistence;
 
 import java.io.Serializable;
+import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author User
  */
 @Entity
+@Table(name="Visitation")
 public class Visitation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
+    private Date visitationDate;
     @ManyToOne
     protected Property property;
 
@@ -32,7 +36,23 @@ public class Visitation implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
+    
+    public Property getProperty(){
+        return property;
+    }
 
+    public void setProperty(Property property) {
+        this.property = property;
+    }
+    
+    public Date getVisitationDate(){
+        return visitationDate;
+    }
+    
+    public void setVisitationDate(Date visitationDate){
+        this.visitationDate = visitationDate;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -57,5 +77,6 @@ public class Visitation implements Serializable {
     public String toString() {
         return "dbaccess.persistence.Visitation[ id=" + id + " ]";
     }
+
     
 }

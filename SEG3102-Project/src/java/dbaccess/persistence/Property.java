@@ -13,12 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Simon
  */
 @Entity
+@Table(name="Property")
 public class Property implements Serializable {    
     private static final long serialVersionUID = 1L;
     @Id
@@ -32,8 +34,6 @@ public class Property implements Serializable {
     private int numOtherRooms;
     private double rent;
     private boolean active;
-    @OneToMany(mappedBy = "property")
-    protected Collection<Visitation> visitations;
     @OneToMany
     protected Collection<Photo> photos;
     @ManyToOne
@@ -109,6 +109,14 @@ public class Property implements Serializable {
     
     public void setActive(boolean active){
         this.active = active;
+    }
+    
+    public Owner getOwner(){
+        return owner;
+    }
+    
+    public void setOwner(Owner owner){
+        this.owner = owner;
     }
     
     @Override

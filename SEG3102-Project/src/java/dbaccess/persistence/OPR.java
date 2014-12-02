@@ -11,9 +11,12 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.RollbackException;
+import javax.transaction.RollbackException;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
 import javax.transaction.NotSupportedException;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
@@ -32,7 +35,16 @@ public class OPR implements Serializable{
     public OPR() {
     }
     
-    public void newProperty(EntityManager em, UserTransaction utx, PropertyData propdata){
+    public static User getUser(EntityManager em, String username) {
+        try{            
+            Query query = em.createQuery("Select u From User u, UserAccount ua where ua.username = :username AND u.account = ua");
+            query.setParameter("username", username);
+            return (User) performQuery(query).get(0);
+        } catch(IllegalArgumentException e){}
+        return null;
+    }
+    
+    public static boolean newProperty(EntityManager em, UserTransaction utx, PropertyData propdata, Owner owner){
         try{
             utx.begin();
             Property nprop = new Property();
@@ -45,20 +57,37 @@ public class OPR implements Serializable{
             nprop.setNumOtherRooms(propdata.getNumOtherRooms);
             nprop.setRent(propdata.getRent);
             nprop.setActive(true);
-        } catch(IllegalArgumentException | NotSupportedException | SystemException | RollbackException | SecurityException | IllegalStateException ex){
+            nprop.setOwner(owner);
+            utx.commit();
+            return true;
+        } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex){
             ex.printStackTrace();
         }
+        return false;
     }
     
-    public void addToVisitingList(Customer customer, Property property){
-        
+    public static boolean addToVisitingList(EntityManager em, UserTransaction utx, Customer customer, Property property){
+        try{
+            utx.begin();
+            customer.addVisit(property);
+            utx.commit();
+            return true;
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex){
+            ex.printStackTrace();
+        }  
+        return false;
     }
     
-    public void viewProperties(Owner owner){
-        
+    public static List viewProperties(EntityManager em, Owner owner){
+        try{            
+            Query query = em.createQuery("Select p From Property p where p.owner = :owner");
+            query.setParameter("owner", owner);
+            return performQuery(query);
+        } catch(IllegalArgumentException e){}
+        return null;
     }
     
-    public static boolean newAccount(EntityManager em, UserTransaction utx, UserData userData){
+    public static boolean newAccount(EntityManager em, UserTransaction utx, UserData userData, Agent agent){
         try{
             utx.begin();
             UserAccount naccount = new UserAccount();
@@ -73,59 +102,191 @@ public class OPR implements Serializable{
             naccount.setCreationTime(new Time(time));
             naccount.setActive(true);
             naccount.setUser(userData.getType(), Double.parseDouble(userData.getmaxRent()));
+            agent.addAccount(naccount);
+            utx.commit();
             return true;
-        } catch(IllegalArgumentException | NotSupportedException | SystemException | RollbackException | SecurityException | IllegalStateException ex) {
+        } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
             ex.printStackTrace();
         }
         return false;
     }
     
-    public void deleteAccount(){
-        
+    public static boolean deleteAccount(EntityManager em, UserTransaction utx, UserAccount account){
+        try{
+            utx.begin();
+            account.setActive(false);
+            utx.commit();
+            return true;
+        } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
     
-    public void deleteProperty(Property property){
-        
+    public static boolean deleteProperty(EntityManager em, UserTransaction utx, Property property){
+        try{
+            utx.begin();
+            property.setActive(false);
+            utx.commit();
+            return true;
+        } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
     
-    public void login(String username, String password){
-        
+    public static boolean login(EntityManager em, String username, String password){
+        try{      
+            UserAccount user = new UserAccount();
+            Query query = em.createQuery("Select u From UserAccount u "
+                    + "where u.username = :username AND u.password = :password");
+            query.setParameter(":username", username);
+            query.setParameter(":password", password);
+            user = (UserAccount) performQuery(query).get(0);
+            return true;
+        } catch(IllegalArgumentException e){}
+        return false;
     }
     
-    public void logout(){
-        
+    public static List searchPropertiesByLocation(EntityManager em, String location){
+        try{            
+            Query query = em.createQuery("Select p From Property p "
+                    + "where p.location = :location");
+            query.setParameter(":locaton", location);
+            return performQuery(query);
+        } catch(IllegalArgumentException e){}
+        return null;
     }
     
-    public void removeVisitingList(){
-        
+    public static List searchPropertiesByType(EntityManager em, String type){
+        try{            
+            Query query = em.createQuery("Select p From Property p "
+                    + "where p.type = :type");
+            query.setParameter(":type", type);
+            return performQuery(query);
+        } catch(IllegalArgumentException e){}
+        return null;
     }
     
-    public void rentProperty(){
-        
+    public static List searchPropertiesByBedRooms(EntityManager em, int bedRooms){
+        try{            
+            Query query = em.createQuery("Select p From Property p "
+                    + "where p.numBedrooms = :bedRooms");
+            query.setParameter(":bedRooms", bedRooms);
+            return performQuery(query);
+        } catch(IllegalArgumentException e){}
+        return null;
     }
     
-    public void searchProperties(PropertyData propertyData){
-        
+    public static List searchPropertiesByBathRooms(EntityManager em, int bathRooms){
+        try{            
+            Query query = em.createQuery("Select p From Property p "
+                    + "where p.numBathrooms = :bathRooms");
+            query.setParameter(":bathRooms", bathRooms);
+            return performQuery(query);
+        } catch(IllegalArgumentException e){}
+        return null;
     }
     
-    public void updateAccount(){
-        
+    public static List searchPropertiesByOtherRooms(EntityManager em, int otherRooms){
+        try{            
+            Query query = em.createQuery("Select p From Property p "
+                    + "where p.numOtherRooms = :otherRooms");
+            query.setParameter(":otherRomos", otherRooms);
+            return performQuery(query);
+        } catch(IllegalArgumentException e){}
+        return null;
     }
     
-    public void updateProperty(Property property, PropertyData propertyData){
-        
+    public static List searchPropertiesByMinRent(EntityManager em, double minRent){
+        try{            
+            Query query = em.createQuery("Select p From Property p "
+                    + "where p.rent >= :minRent");
+            query.setParameter(":minRent", minRent);
+            return performQuery(query);
+        } catch(IllegalArgumentException e){}
+        return null;
     }
     
-    public void viewAccount(UserAccount account){
-        
+    public static List searchPropertiesByMaxRent(EntityManager em, double maxRent){
+        try{            
+            Query query = em.createQuery("Select p From Property p "
+                    + "where p.rent <= :maxRent");
+            query.setParameter(":maxRent", maxRent);
+            return performQuery(query);
+        } catch(IllegalArgumentException e){}
+        return null;
     }
     
-    public void viewVisitHistory(UserAccount account){
-        
+    public static boolean updateAccount(EntityManager em, UserTransaction utx, UserAccount account, UserData userData){
+        try{
+            utx.begin();
+            account.setId(userData.getId());
+            account.setUsername(userData.getUsername());
+            account.setPassword(userData.getPassword());
+            account.setEmail(userData.getEmail());
+            account.setGivenName(userData.getGivenName());
+            account.setLastName(userData.getLastName());
+            account.setActive(true);
+            account.setUser(userData.getType(), Double.parseDouble(userData.getmaxRent()));
+            utx.commit();
+            return true;
+        } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
     
-    public void viewVisitingList(){
-        
+    public static boolean updateProperty(EntityManager em, UserTransaction utx, Property property, PropertyData propertyData){
+        try{
+            utx.begin();
+            property.setId(propertyData.getId());
+            property.setType(propertyData.getType());
+            property.setAddress(propertyData.getAddress());
+            property.setLocation(propertyData.getLocation());
+            property.setNumBathrooms(propertyData.getNumBathrooms);
+            property.setNumBedrooms(propertyData.getNumBedrooms);
+            property.setNumOtherRooms(propertyData.getNumOtherRooms);
+            property.setRent(propertyData.getRent);
+            utx.commit();
+            return true;
+        } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+    
+    public static List viewAccount(EntityManager em, UserAccount account){
+        try{
+            String id = account.getId();
+            Query query = em.createQuery("Select a From UserAccount a "
+                    + "where a.userID = :id");
+            query.setParameter(":id", id);
+            return performQuery(query);
+        } catch(IllegalArgumentException e){}
+        return null;
+    }
+    
+    public static List viewVisitingList(EntityManager em, Customer customer){
+        try{
+            String id = customer.getId();
+            Query query = em.createQuery("Select c.visitingList From Customer c "
+                    + "where c.id = :id");
+            query.setParameter(":id", id);
+            return performQuery(query);
+        } catch(IllegalArgumentException e){}
+        return null;
+    }
+
+    private static List performQuery(final Query query) {
+        List resultList = query.getResultList();
+        if (resultList.isEmpty()) {
+            return null;
+        } 
+        ArrayList results;
+        results = new ArrayList<>();
+        results.addAll(resultList);
+        return results;
     }
     
 }

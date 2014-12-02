@@ -21,7 +21,7 @@ import javax.persistence.Temporal;
  * @author Simon
  */
 @Entity
-@Table(name="userAccount")
+@Table(name="UserAccount")
 public class UserAccount implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -119,10 +119,10 @@ public class UserAccount implements Serializable {
     
     public void setUser(String user, double maxRent){
         if(user.equals("customer")){
-            this.user = new Customer();
+            this.user = new Customer(this);
             this.user.setMaxRent(maxRent);
         } else{
-            this.user = new Owner();
+            this.user = new Owner(this);
         }
     }
     

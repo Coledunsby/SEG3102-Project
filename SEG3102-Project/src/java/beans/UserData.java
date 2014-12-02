@@ -25,6 +25,7 @@ public class UserData {
     private String email;
     private String type;
     private String maxRent;
+    private User user;
     private String addstatus;
     private List<User> lookupResults;
  
@@ -168,5 +169,13 @@ public class UserData {
     // show message if no result
     public boolean getShowMessage() {
         return (lookupResults != null) && lookupResults.isEmpty();
+    }
+
+    public User getUser() {
+       return user;
+    }
+    
+    public void setUser(User user){
+        this.user = user;
     }
 }

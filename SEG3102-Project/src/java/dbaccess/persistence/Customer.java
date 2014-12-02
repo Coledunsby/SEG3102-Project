@@ -6,23 +6,28 @@
 package dbaccess.persistence;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Simon
  */
 @Entity
+@Table(name="Customer")
 public class Customer extends User implements Serializable {
     @OneToOne
     private Tenant tenant;
     private static final long serialVersionUID = 1L;
     private double maxRent;
     @OneToOne
-    protected VisitingList visitingList;
+    protected VisitingList visitingList = new VisitingList();
+
+    public Customer(UserAccount account) {
+        super(account);
+    }
     
     @Override
     public double getMaxRent(){
@@ -32,6 +37,14 @@ public class Customer extends User implements Serializable {
     @Override
     public void setMaxRent(double maxRent){
         this.maxRent = maxRent;
+    }
+    
+    public VisitingList getVisitingList(){
+        return visitingList;
+    }
+    
+    public void addVisit(Property property){
+        visitingList.addProperty(property);
     }
     
 }
