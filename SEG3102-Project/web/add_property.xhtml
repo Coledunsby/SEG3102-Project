@@ -1,14 +1,80 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <body>
 
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                Add Property
+                <h1>Add Property</h1>
+                <f:view>
+                    <h:form prependId="false">
+                        <h:panelGrid columns="3">
+
+                            <h:outputText value="Photos"></h:outputText>
+                            <h:panelGroup id="photos">
+                                <h:graphicImage id="photo1" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                <h:graphicImage id="photo2" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                <h:graphicImage id="photo3" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                <h:graphicImage id="photo4" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                <h:graphicImage id="photo5" width="25" height="25" value="resources/thumbnail.png" />
+                            </h:panelGroup>
+                            <h:message id="photosMsg" for="photos" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Type"></h:outputText>
+                            <h:selectOneMenu id="type" value="#{userData.type}">
+                                <f:selectItem itemValue="house" itemLabel="House" />
+                                <f:selectItem itemValue="apartment" itemLabel="Apartment" />
+                            </h:selectOneMenu>
+                            <h:message id="typeMsg" for="type" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Address"></h:outputText>
+                            <h:inputText id="address" value="#{userData.password}" required="true" requiredMessage="Please enter an Address."></h:inputText>
+                            <h:message id="addressMsg" for="address" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Location"></h:outputText>
+                            <h:selectOneMenu id="location" value="#{userData.type}">
+                                <f:selectItem itemValue="1" itemLabel="Zone 1" />
+                                <f:selectItem itemValue="2" itemLabel="Zone 2" />
+                            </h:selectOneMenu>
+                            <h:message id="locationMsg" for="type" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Number of Bedrooms"></h:outputText>
+                            <h:inputText id="bedrooms" value="#{userData.lastName}" required="true" requiredMessage="Please enter the Number of Bedrooms.">
+                                <f:validator validatorId="numberValidator"/>
+                            </h:inputText>
+                            <h:message id="bedroomsMsg" for="bedrooms" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Number of Bathrooms"></h:outputText>
+                            <h:inputText id="bathrooms" value="#{userData.email}" required="true" requiredMessage="Please enter the Number of Bathrooms.">
+                                <f:validator validatorId="numberValidator"/>
+                            </h:inputText>
+                            <h:message id="bathroomsMsg" for="bathrooms" errorStyle="color:red; display:block"/>
+
+                            <h:outputText value="Number of Other Rooms"></h:outputText>
+                            <h:inputText id="other" value="#{userData.email}" required="true" requiredMessage="Please enter the Number of Other Rooms.">
+                                <f:validator validatorId="numberValidator"/>
+                            </h:inputText>
+                            <h:message id="otherMsg" for="other" errorStyle="color:red; display:block"/>
+                            
+                            <h:outputText value="Rent"></h:outputText>
+                            <h:inputText id="rent" value="#{userData.maxRent}" required="true" requiredMessage="Please enter the Rent.">
+                                <f:validator validatorId="numberValidator"/>
+                            </h:inputText>
+                            <h:message id="rentMsg" for="rent" errorStyle="color:red; display:block"/>
+
+                        </h:panelGrid>
+
+                        <h:commandButton value="Add Property" type="command" actionListener="#{lookupControl.add}">
+                            <f:ajax execute="address bedrooms bathrooms other rent" render="addressMsg bedroomsMsg bathroomsMsg otherMsg rentMsg"/>
+                        </h:commandButton>
+                        <h:commandButton value="Reset" type="reset" />
+                    </h:form>
+                </f:view>
             </ui:define>
 
         </ui:composition>

@@ -10,28 +10,27 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h:panelGrid id="panel" columns="2" border="1" cellpadding="5" cellspacing="0">
-                    
-                    <f:facet name="header">
-                        <h:outputText value="Account Information"/>
-                    </f:facet>
-                    
-                    <h:outputLabel value="Username:" />
-                    <h:outputLabel value="Coledunsby" />
-                    
-                    <h:outputLabel value="Given Name:" />
-                    <h:outputLabel value="Cole" />
-                    
-                    <h:outputLabel value="Last Name:" />
-                    <h:outputLabel value="Dunsby" />
-                    
-                    <h:outputLabel value="Email Address:" />
-                    <h:outputLabel value="coledunsby@gmail.com" />
-                    
-                    <h:outputLabel value="Account Type:" />
-                    <h:outputLabel value="Customer" />
-                    
-                </h:panelGrid>
+                <h1>Account Information</h1>
+                <f:view>
+                    <h:panelGrid columns="2" cellpadding="2">
+                        
+                        <h:outputText value="Username:" style="font-weight: bold;"></h:outputText>
+                        <h:outputText value="Coledunsby"></h:outputText>
+
+                        <h:outputText value="Given Name:" style="font-weight: bold;"></h:outputText>
+                        <h:outputText value="Cole"></h:outputText>
+
+                        <h:outputText value="Last Name:" style="font-weight: bold;"></h:outputText>
+                        <h:outputText value="Dunsby"></h:outputText>
+
+                        <h:outputText value="Email Address:" style="font-weight: bold;"></h:outputText>
+                        <h:outputText value="coledunsby@gmail.com"></h:outputText>
+
+                        <h:outputText value="Account Type:" style="font-weight: bold;"></h:outputText>
+                        <h:outputText value="Customer"></h:outputText>
+
+                    </h:panelGrid>
+                </f:view>
             </ui:define>
 
         </ui:composition>
