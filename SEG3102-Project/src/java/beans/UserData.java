@@ -17,7 +17,6 @@ import javax.enterprise.context.RequestScoped;
 @Named(value = "userData")
 @RequestScoped
 public class UserData {
-    private String id;
     private String username;
     private String password;
     private String givenName;
@@ -33,20 +32,6 @@ public class UserData {
      * Creates a new instance of UserData
      */
     public UserData() {
-    }
-
-    /**
-     * @return the id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(String id) {
-        this.id = id;
     }
 
     /**

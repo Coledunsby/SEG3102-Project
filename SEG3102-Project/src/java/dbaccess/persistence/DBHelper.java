@@ -41,7 +41,7 @@ public class DBHelper {
         try{
             utx.begin();
             UserAccount naccount = new UserAccount();
-            naccount.setId(userData.getId());
+            //naccount.setId(userData.getId());
             naccount.setUsername(userData.getUsername());
             naccount.setPassword(userData.getPassword());
             naccount.setEmail(userData.getEmail());

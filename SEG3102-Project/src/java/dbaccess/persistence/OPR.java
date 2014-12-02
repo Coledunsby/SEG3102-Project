@@ -48,14 +48,14 @@ public class OPR implements Serializable{
         try{
             utx.begin();
             Property nprop = new Property();
-            nprop.setId(propdata.getId());
+            //nprop.setId(propdata.getId());
             nprop.setType(propdata.getType());
             nprop.setAddress(propdata.getAddress());
             nprop.setLocation(propdata.getLocation());
-            nprop.setNumBathrooms(propdata.getNumBathrooms);
-            nprop.setNumBedrooms(propdata.getNumBedrooms);
-            nprop.setNumOtherRooms(propdata.getNumOtherRooms);
-            nprop.setRent(propdata.getRent);
+            nprop.setNumBathrooms(propdata.getNumBathrooms());
+            nprop.setNumBedrooms(propdata.getNumBedrooms());
+            nprop.setNumOtherRooms(propdata.getNumOtherRooms());
+            nprop.setRent(propdata.getRent());
             nprop.setActive(true);
             nprop.setOwner(owner);
             utx.commit();
@@ -91,7 +91,7 @@ public class OPR implements Serializable{
         try{
             utx.begin();
             UserAccount naccount = new UserAccount();
-            naccount.setId(userData.getId());
+            //naccount.setId(userData.getId());
             naccount.setUsername(userData.getUsername());
             naccount.setPassword(userData.getPassword());
             naccount.setEmail(userData.getEmail());
@@ -221,7 +221,7 @@ public class OPR implements Serializable{
     public static boolean updateAccount(EntityManager em, UserTransaction utx, UserAccount account, UserData userData){
         try{
             utx.begin();
-            account.setId(userData.getId());
+            //account.setId(userData.getId());
             account.setUsername(userData.getUsername());
             account.setPassword(userData.getPassword());
             account.setEmail(userData.getEmail());
@@ -240,14 +240,14 @@ public class OPR implements Serializable{
     public static boolean updateProperty(EntityManager em, UserTransaction utx, Property property, PropertyData propertyData){
         try{
             utx.begin();
-            property.setId(propertyData.getId());
+            //property.setId(propertyData.getId());
             property.setType(propertyData.getType());
             property.setAddress(propertyData.getAddress());
             property.setLocation(propertyData.getLocation());
-            property.setNumBathrooms(propertyData.getNumBathrooms);
-            property.setNumBedrooms(propertyData.getNumBedrooms);
-            property.setNumOtherRooms(propertyData.getNumOtherRooms);
-            property.setRent(propertyData.getRent);
+            property.setNumBathrooms(propertyData.getNumBathrooms());
+            property.setNumBedrooms(propertyData.getNumBedrooms());
+            property.setNumOtherRooms(propertyData.getNumOtherRooms());
+            property.setRent(propertyData.getRent());
             utx.commit();
             return true;
         } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
