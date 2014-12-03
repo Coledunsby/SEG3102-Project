@@ -70,7 +70,7 @@
                         </h:panelGrid>
 
                         <h:commandButton value="Add Property" type="command" actionListener="#{lookupControl.addProperty()}">
-                            <f:ajax execute="address bedrooms bathrooms other rent" render="status addressMsg bedroomsMsg bathroomsMsg otherMsg rentMsg"/>
+                            <f:ajax execute="address bedrooms bathrooms other type location rent" render="status addressMsg bedroomsMsg bathroomsMsg otherMsg rentMsg"/>
                         </h:commandButton>
                         <h:commandButton value="Reset" type="reset" />
                         
