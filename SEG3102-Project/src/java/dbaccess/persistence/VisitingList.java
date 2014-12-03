@@ -6,6 +6,7 @@
 package dbaccess.persistence;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,6 +28,10 @@ public class VisitingList implements Serializable {
     private String id;
     @OneToMany
     protected Collection<Visitation> visits;
+    
+    public VisitingList(){
+        visits = new ArrayList<Visitation>();
+    }
 
     public String getId() {
         return id;

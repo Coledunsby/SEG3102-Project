@@ -7,6 +7,7 @@ package dbaccess.persistence;
 
 import java.io.Serializable;
 import java.util.Collection;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,7 +17,8 @@ import javax.persistence.Table;
  * @author Simon
  */
 @Entity
-@Table(name="Owner")
+@Table(name="User")
+@DiscriminatorValue("o")
 public class Owner extends User implements Serializable {
     
     private static final long serialVersionUID = 1L;

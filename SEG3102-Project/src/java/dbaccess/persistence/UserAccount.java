@@ -118,7 +118,11 @@ public class UserAccount implements Serializable {
         return user;
     }
     
-    public void setUser(String user, double maxRent){
+    public void setUser(User user){
+        this.user = user;
+    }
+    
+    public void addUser(String user, double maxRent){
         if(user.equals("customer")){
             this.user = new Customer(this);
             this.user.setMaxRent(maxRent);

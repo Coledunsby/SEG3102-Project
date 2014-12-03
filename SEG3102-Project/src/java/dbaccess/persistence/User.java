@@ -7,6 +7,8 @@ package dbaccess.persistence;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="User")
 @Inheritance(strategy=JOINED)
+@DiscriminatorValue("u")
+@DiscriminatorColumn(name="User_type")
 public class User implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

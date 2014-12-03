@@ -7,7 +7,9 @@ package dbaccess.persistence;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -16,7 +18,8 @@ import javax.persistence.Table;
  * @author Simon
  */
 @Entity
-@Table(name="Customer")
+@Table(name="User")
+@DiscriminatorValue("c")
 public class Customer extends User implements Serializable {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Tenant tenant;
