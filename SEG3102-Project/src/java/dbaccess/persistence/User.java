@@ -6,6 +6,7 @@
 package dbaccess.persistence;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -24,7 +25,7 @@ import javax.persistence.Table;
 public class User implements Serializable{
     @Id
     protected String id;
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
     protected UserAccount account;
     
     public User(){}

@@ -7,6 +7,7 @@ package dbaccess.persistence;
 
 import java.io.Serializable;
 import java.sql.Time;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,7 +39,7 @@ public class UserAccount implements Serializable {
     private java.util.Date creationDate;
     private Time creationTime;
     private boolean active;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private User user;
 
     public String getId() {
