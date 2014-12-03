@@ -15,19 +15,19 @@
                     <h:panelGrid columns="2" cellpadding="2">
                         
                         <h:outputText value="Username:" style="font-weight: bold;"></h:outputText>
-                        <h:outputText value="Coledunsby"></h:outputText>
+                        <h:outputText value="#{userData.username}"></h:outputText>
 
                         <h:outputText value="Given Name:" style="font-weight: bold;"></h:outputText>
-                        <h:outputText value="Cole"></h:outputText>
+                        <h:outputText value="#{userData.givenName}"></h:outputText>
 
                         <h:outputText value="Last Name:" style="font-weight: bold;"></h:outputText>
-                        <h:outputText value="Dunsby"></h:outputText>
+                        <h:outputText value="#{userData.lastName}"></h:outputText>
 
                         <h:outputText value="Email Address:" style="font-weight: bold;"></h:outputText>
-                        <h:outputText value="coledunsby@gmail.com"></h:outputText>
+                        <h:outputText value="#{userData.email}"></h:outputText>
 
                         <h:outputText value="Account Type:" style="font-weight: bold;"></h:outputText>
-                        <h:outputText value="Customer"></h:outputText>
+                        <h:outputText value="#{userData.type}"></h:outputText>
 
                     </h:panelGrid>
                 </f:view>
