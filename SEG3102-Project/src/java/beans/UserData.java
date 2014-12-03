@@ -6,17 +6,18 @@
 package beans;
 
 import dbaccess.persistence.User;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author Cole
  */
 @Named(value = "userData")
-@RequestScoped
-public class UserData {
+@SessionScoped
+public class UserData implements Serializable {
     private String username;
     private String password;
     private String givenName;
