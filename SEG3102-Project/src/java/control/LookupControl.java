@@ -73,7 +73,7 @@ public class LookupControl implements Serializable{
     
     public void logout() {        
         if (userData.getUser() != null){
-            userData.setUser(null);
+            userData.logout();
         } 
     }
     
