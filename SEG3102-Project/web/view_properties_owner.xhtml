@@ -10,11 +10,6 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h:form>
-                    <h:inputText value="" />
-                    <h:commandButton value="SEARCH" action="search" />
-                </h:form>
-                <br></br>
                 <h:dataTable cellspacing="0" cellpadding="5" border="1" id="resultTable" value="#{lookupControl.viewProperties()}" var="property">
                     <h:column>    				
                        <f:facet name="header">Photos</f:facet>    				

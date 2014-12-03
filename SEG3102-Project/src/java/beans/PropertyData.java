@@ -6,7 +6,6 @@
 package beans;
 
 import dbaccess.persistence.Property;
-import dbaccess.persistence.User;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -24,10 +23,11 @@ public class PropertyData {
     private int numBedrooms;
     private int numBathrooms;
     private int numOtherRooms;
-    private int rent;
-    private int minRent;
-    private int maxRent;
+    private double rent;
+    private double minRent;
+    private double maxRent;
     private Property property;
+    private String addStatus;
     private List<Property> lookupResults;
 
     /**
@@ -88,8 +88,8 @@ public class PropertyData {
     /**
      * @param numBedrooms the numBedrooms to set
      */
-    public void setNumBedrooms(String numBedrooms) {
-        this.numBedrooms = Integer.parseInt(numBedrooms);
+    public void setNumBedrooms(int numBedrooms) {
+        this.numBedrooms = numBedrooms;
     }
 
     /**
@@ -102,8 +102,8 @@ public class PropertyData {
     /**
      * @param numBathrooms the numBathrooms to set
      */
-    public void setNumBathrooms(String numBathrooms) {
-        this.numBathrooms = Integer.parseInt(numBathrooms);
+    public void setNumBathrooms(int numBathrooms) {
+        this.numBathrooms = numBathrooms;
     }
     
     /**
@@ -116,22 +116,22 @@ public class PropertyData {
     /**
      * @param numOtherRooms the numOtherRooms to set
      */
-    public void setNumOtherRooms(String numOtherRooms) {
-        this.numOtherRooms = Integer.parseInt(numOtherRooms);
+    public void setNumOtherRooms(int numOtherRooms) {
+        this.numOtherRooms = numOtherRooms;
     }
     
     /**
      * @return the rent
      */
-    public int getRent() {
+    public double getRent() {
         return rent;
     }
 
     /**
      * @param rent the rent to set
      */
-    public void setRent(String rent) {
-        this.rent = Integer.parseInt(rent);
+    public void setRent(double rent) {
+        this.rent = rent;
     }
     
     public Property getProperty(){
@@ -150,19 +150,27 @@ public class PropertyData {
         return lookupResults;
     }
     
-    public int getMinRent(){
+    public double getMinRent(){
         return minRent;
     }
     
-    public void setMinRent(int minRent){
+    public void setMinRent(double minRent){
         this.minRent = minRent;
     }
     
-    public int getMaxRent(){
+    public double getMaxRent(){
         return maxRent;
     }
     
-    public void setMaxRent(int maxRent){
+    public void setMaxRent(double maxRent){
         this.maxRent = maxRent;
+    }
+    
+    public String getAddStatus() {
+        return addStatus;
+    }
+
+    public void setAddStatus(String addStatus) {
+        this.addStatus = addStatus;
     }
 }

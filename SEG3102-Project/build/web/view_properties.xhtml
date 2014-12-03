@@ -15,13 +15,9 @@
                     <h:commandButton value="SEARCH" action="search" />
                 </h:form>
                 <br></br>
-                <h:dataTable value="#{customer.visitingList}" var="property" cellspacing="0" cellpadding="5"
-                             styleClass="employeeTable"
-                             headerClass="employeeTableHeader"
-                             rowClasses="employeeTableOddRow,employeeTableEvenRow" border="1">
+                <h:dataTable cellspacing="0" cellpadding="5" border="1" id="resultTable" value="#{lookupControl.viewProperties()}" var="property">
                     <h:column>    				
                        <f:facet name="header">Photos</f:facet>    				
-                       #{property.photos}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Type</f:facet>
@@ -37,15 +33,15 @@
                     </h:column>
                     <h:column>
                        <f:facet name="header">Bedrooms</f:facet>
-                       #{property.bedrooms}
+                       #{property.numBedrooms}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Bathrooms</f:facet>
-                       #{property.bathrooms}
+                       #{property.numBathrooms}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Other Rooms</f:facet>
-                       #{property.other}
+                       #{property.numOtherRooms}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Rent</f:facet>

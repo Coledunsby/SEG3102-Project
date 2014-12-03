@@ -39,7 +39,7 @@
                         <c:when test="${lookupControl.userType == 'owner'}"> 
                             <li><h:link value="Home" outcome="index" /></li>
                             <li><h:link value="View Account" outcome="view_account" /></li>
-                            <li><h:link value="View Properties" outcome="view_properties" /></li>
+                            <li><h:link value="View Properties" outcome="view_properties_owner" /></li>
                             <li><h:link value="Add Property" outcome="add_property" /></li>
                             <li><h:form><h:commandLink value="Logout" action="#{lookupControl.logout()}" /></h:form></li>
                         </c:when> 

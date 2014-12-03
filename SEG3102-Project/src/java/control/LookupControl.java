@@ -82,7 +82,11 @@ public class LookupControl implements Serializable{
     
     public void addProperty(){
         if (userData.getUser() instanceof Owner) {
-            OPR.newProperty(em, utx, propertyData, (Owner) userData.getUser());
+            if (OPR.newProperty(em, utx, propertyData, (Owner) userData.getUser())) {
+                propertyData.setAddStatus("Property added!");
+            } else {
+                propertyData.setAddStatus("Failed to add property!");
+            }
         }
     }
     
@@ -92,11 +96,13 @@ public class LookupControl implements Serializable{
         }
     }
     
-    public void viewProperties(){
+    public List<Property> viewProperties(){
         if (userData.getUser() instanceof Owner){
             List<Property> results = OPR.viewProperties(em, (Owner) userData.getUser());            
             propertyData.setLookupResults(results);
+            return results;
         }
+        return null;
     }
     
     public void addAccount() {
