@@ -164,4 +164,17 @@ public class UserData implements Serializable {
     public void setUser(User user){
         this.user = user;
     }
+    
+    public void logout(){
+        user = null;
+        type = null;
+        username = null;
+        password = null;
+        givenName = null;
+        lastName = null;
+        email = null;
+        lookupResults = null;
+        maxRent = null;
+        addStatus = null;
+    }
 }
