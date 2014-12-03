@@ -25,6 +25,8 @@ public class PropertyData {
     private int numBathrooms;
     private int numOtherRooms;
     private int rent;
+    private int minRent;
+    private int maxRent;
     private Property property;
     private List<Property> lookupResults;
 
@@ -146,5 +148,21 @@ public class PropertyData {
     
     public List<Property> getLookupResults() {
         return lookupResults;
+    }
+    
+    public int getMinRent(){
+        return minRent;
+    }
+    
+    public void setMinRent(int minRent){
+        this.minRent = minRent;
+    }
+    
+    public int getMaxRent(){
+        return maxRent;
+    }
+    
+    public void setMaxRent(int maxRent){
+        this.maxRent = maxRent;
     }
 }

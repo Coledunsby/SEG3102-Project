@@ -42,20 +42,20 @@
                             <h:message id="bathroomsMsg" for="bathrooms" errorStyle="color:red; display:block"/>
 
                             <h:outputText value="Min Rent"></h:outputText>
-                            <h:inputText id="min_rent" value="#{propertyData.rent}" required="true" requiredMessage="Please enter the Rent.">
+                            <h:inputText id="min_rent" value="#{propertyData.minRent}" required="true" requiredMessage="Please enter the Rent.">
                                 <f:validator validatorId="numberValidator"/>
                             </h:inputText>
                             <h:message id="rentMsg" for="min_rent" errorStyle="color:red; display:block"/>
                             
                             <h:outputText value="Max Rent"></h:outputText>
-                            <h:inputText id="max_rent" value="#{propertyData.rent}" required="true" requiredMessage="Please enter the Rent.">
+                            <h:inputText id="max_rent" value="#{propertyData.maxRent}" required="true" requiredMessage="Please enter the Rent.">
                                 <f:validator validatorId="numberValidator"/>
                             </h:inputText>
                             <h:message id="max_rentMsg" for="max_rent" errorStyle="color:red; display:block"/>
 
                         </h:panelGrid>
 
-                        <h:commandButton value="Search Property" type="command" actionListener="#{lookupControl.add}">
+                        <h:commandButton value="Search Property" type="command" actionListener="#{lookupControl.lookupProperty()}">
                             <f:ajax execute="bedrooms bathrooms min_rent max_rent" render="bedroomsMsg bathroomsMsg min_rentMsg max_rentMsg"/>
                         </h:commandButton>
                         <h:commandButton value="Reset" type="reset" />
