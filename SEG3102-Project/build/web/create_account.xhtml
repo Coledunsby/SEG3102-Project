@@ -55,7 +55,7 @@
                         </h:panelGrid>
 
                         <h:commandButton value="Create Account" type="command" actionListener="#{lookupControl.addAccount()}">
-                            <f:ajax execute="username password given_name last_name email max_rent" render="status usernameMsg passwordMsg given_nameMsg last_nameMsg emailMsg max_rentMsg"/>
+                            <f:ajax execute="username password given_name last_name email type max_rent" render="status usernameMsg passwordMsg given_nameMsg last_nameMsg emailMsg max_rentMsg"/>
                         </h:commandButton>
                         <h:commandButton value="Reset" type="reset" />
                         

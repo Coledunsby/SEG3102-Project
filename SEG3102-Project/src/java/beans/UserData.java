@@ -112,7 +112,7 @@ public class UserData {
     }
 
     /**
-     * @param type the email to set
+     * @param type the type to set
      */
     public void setType(String type) {
         this.type = type;
@@ -121,7 +121,7 @@ public class UserData {
     /**
      * @return the maxRent
      */
-    public String getmaxRent() {
+    public String getMaxRent() {
         return maxRent;
     }
 

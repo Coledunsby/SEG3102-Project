@@ -46,7 +46,7 @@ public class LookupControl implements Serializable{
      * Creates a new instance of lookupControl
      */
     public LookupControl() {
-        
+        agent = new Agent();
     }
     
     public String getUserType() {

@@ -101,7 +101,7 @@ public class OPR implements Serializable{
             naccount.setCreationDate(new Date(time));
             naccount.setCreationTime(new Time(time));
             naccount.setActive(true);
-            naccount.setUser(userData.getType(), Double.parseDouble(userData.getmaxRent()));
+            naccount.setUser(userData.getType(), Double.parseDouble(userData.getMaxRent()));
             agent.addAccount(naccount);
             em.persist(naccount);
             utx.commit();
@@ -229,7 +229,7 @@ public class OPR implements Serializable{
             account.setGivenName(userData.getGivenName());
             account.setLastName(userData.getLastName());
             account.setActive(true);
-            account.setUser(userData.getType(), Double.parseDouble(userData.getmaxRent()));
+            account.setUser(userData.getType(), Double.parseDouble(userData.getMaxRent()));
             utx.commit();
             return true;
         } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
