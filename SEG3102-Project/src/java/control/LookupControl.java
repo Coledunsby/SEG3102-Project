@@ -115,9 +115,9 @@ public class LookupControl implements Serializable{
         }
     }
     
-    public void deleteProperty(){
+    public void deleteProperty(Property property){
         if (userData.getUser() instanceof Owner){
-            OPR.deleteProperty(em, utx, propertyData.getProperty());
+            OPR.deleteProperty(em, utx, property);
         }
     }
     

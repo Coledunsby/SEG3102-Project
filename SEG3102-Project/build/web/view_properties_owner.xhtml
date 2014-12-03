@@ -47,6 +47,9 @@
                        <f:facet name="header">Rent</f:facet>
                        #{property.rent}
                     </h:column>
+                    <h:column>
+                        <h:form><h:commandButton value="Delete" action="#{lookupControl.deleteProperty(property)}" /></h:form>
+                    </h:column>
                 </h:dataTable>
             </ui:define>
 
