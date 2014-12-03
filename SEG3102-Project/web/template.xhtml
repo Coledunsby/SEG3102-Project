@@ -21,7 +21,23 @@
             <div id="left">
                 <ui:insert name="left">
                     
-                    <c:choose> 
+                    <li><h:link value="Login" outcome="login" /></li>
+                    <li><h:link value="Create Account" outcome="create_account" /></li>
+
+                    <li><h:link value="Home" outcome="index" /></li>
+                    <li><h:link value="View Account" outcome="view_account" /></li>
+                    <li><h:link value="View Visiting List" outcome="view_visiting_list" /></li>
+                    <li><h:link value="View Properties" outcome="view_properties" /></li>
+                    <li><h:link value="Search Properties" outcome="search_properties" /></li>
+                    <li><h:link value="Logout" outcome="index" /></li>
+
+                    <li><h:link value="Home" outcome="index" /></li>
+                    <li><h:link value="View Account" outcome="view_account" /></li>
+                    <li><h:link value="View Properties" outcome="view_properties" /></li>
+                    <li><h:link value="Add Property" outcome="add_property" /></li>
+                    <li><h:link value="Logout" outcome="index" /></li>
+                    
+                    <!--<c:choose> 
                         <c:when test="${lookupControl.userType == 'None'}"> 
                             <li><h:link value="Login" outcome="login" /></li>
                             <li><h:link value="Create Account" outcome="create_account" /></li>
@@ -42,7 +58,7 @@
                             <li><h:link value="Add Property" outcome="add_property" /></li>
                             <li><h:link value="Logout" outcome="index" /></li>
                         </c:when> 
-                    </c:choose>
+                    </c:choose>-->
                     
                 </ui:insert>
             </div>
