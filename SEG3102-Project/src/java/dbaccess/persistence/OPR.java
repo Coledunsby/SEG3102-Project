@@ -81,7 +81,7 @@ public class OPR implements Serializable{
     
     public static List viewProperties(EntityManager em, Owner owner){
         try{            
-            Query query = em.createQuery("Select p From Property p where p.owner = :owner");
+            Query query = em.createQuery("Select p From Property p where p.owner = :owner And p.active = true");
             query.setParameter("owner", owner);
             return performQuery(query);
         } catch(IllegalArgumentException e){}
