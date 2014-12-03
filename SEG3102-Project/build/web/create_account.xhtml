@@ -47,15 +47,23 @@
                             <h:message id="typeMsg" for="type" errorStyle="color:red; display:block"/>
 
                             <h:outputText value="Max Rent"></h:outputText>
-                            <h:inputText id="max_rent" value="#{userData.maxRent}" required="true" requiredMessage="Please enter a Max Rent."></h:inputText>
+                            <h:inputText id="max_rent" value="#{userData.maxRent}" required="true" requiredMessage="Please enter a Max Rent.">
+                                <f:validator validatorId="numberValidator"/>
+                            </h:inputText>
                             <h:message id="max_rentMsg" for="max_rent" errorStyle="color:red; display:block"/>
 
                         </h:panelGrid>
 
                         <h:commandButton value="Create Account" type="command" actionListener="#{lookupControl.addAccount()}">
-                            <f:ajax execute="username password given_name last_name email max_rent" render="usernameMsg passwordMsg given_nameMsg last_nameMsg emailMsg max_rentMsg"/>
+                            <f:ajax execute="username password given_name last_name email max_rent" render="status usernameMsg passwordMsg given_nameMsg last_nameMsg emailMsg max_rentMsg"/>
                         </h:commandButton>
                         <h:commandButton value="Reset" type="reset" />
+                        
+                        <div>
+                            <hr/>
+                            <h:outputText  style="color: royalblue; font-size: medium; font-weight: bold" id="status" value="#{userData.addStatus}"/>
+                        </div>
+                        
                     </h:form>
                 </f:view>
             </ui:define>

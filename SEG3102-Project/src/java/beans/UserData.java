@@ -25,7 +25,7 @@ public class UserData {
     private String type;
     private String maxRent;
     private User user;
-    private String addstatus;
+    private String addStatus;
     private List<User> lookupResults;
  
     /**
@@ -132,12 +132,12 @@ public class UserData {
         this.maxRent = maxRent;
     }
     
-    public String getAddstatus() {
-        return addstatus;
+    public String getAddStatus() {
+        return addStatus;
     }
 
-    public void setAddstatus(String addstatus) {
-        this.addstatus = addstatus;
+    public void setAddStatus(String addStatus) {
+        this.addStatus = addStatus;
     }
 
     public void setLookupResults(List<User> results) {

@@ -12,12 +12,16 @@ import dbaccess.persistence.Customer;
 import dbaccess.persistence.OPR;
 import dbaccess.persistence.Owner;
 import dbaccess.persistence.Property;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -56,9 +60,14 @@ public class LookupControl implements Serializable{
     public void login() {
         if (OPR.login(em, userData.getUsername(), userData.getPassword())) {
             userData.setUser(OPR.getUser(em, userData.getUsername()));
-            userData.setAddstatus("The User was successfully logged in.");
+            userData.setAddStatus("The User was successfully logged in.");
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(LookupControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
-            userData.setAddstatus("User was not found.");
+            userData.setAddStatus("User was not found.");
         }
     }
     
@@ -88,8 +97,12 @@ public class LookupControl implements Serializable{
     }
     
     public void addAccount() {
-        if (agent != null){
-            OPR.newAccount(em, utx, userData, agent);
+        if (agent != null) {
+            if (OPR.newAccount(em, utx, userData, agent)) {
+                userData.setAddStatus("User created!");
+            } else {
+                userData.setAddStatus("Failed to create user.");
+            }
         }
     }
     

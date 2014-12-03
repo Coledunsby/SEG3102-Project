@@ -103,6 +103,7 @@ public class OPR implements Serializable{
             naccount.setActive(true);
             naccount.setUser(userData.getType(), Double.parseDouble(userData.getmaxRent()));
             agent.addAccount(naccount);
+            em.persist(naccount);
             utx.commit();
             return true;
         } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
