@@ -6,6 +6,7 @@
 package dbaccess.persistence;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,10 @@ public class Agent implements Serializable {
     @OneToMany
     private Collection<UserAccount> accounts;
 
+    public Agent() {
+        accounts = new ArrayList<>();
+    }
+    
     public Long getId() {
         return aid;
     }

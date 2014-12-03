@@ -6,7 +6,7 @@
 package dbaccess.persistence;
 
 import java.io.Serializable;
-import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -18,11 +18,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="Customer")
 public class Customer extends User implements Serializable {
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Tenant tenant;
     private static final long serialVersionUID = 1L;
     private double maxRent;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     protected VisitingList visitingList = new VisitingList();
 
     public Customer() {
