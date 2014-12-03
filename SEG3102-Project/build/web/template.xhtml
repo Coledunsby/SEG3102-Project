@@ -27,7 +27,7 @@
                             <li><h:link value="Create Account" outcome="create_account" /></li>
                         </c:when> 
                         
-                        <c:when test="${lookupControl.userType == 'Customer'}"> 
+                        <c:when test="${lookupControl.userType == 'customer'}"> 
                             <li><h:link value="Home" outcome="index" /></li>
                             <li><h:link value="View Account" outcome="view_account" /></li>
                             <li><h:link value="View Visiting List" outcome="view_visiting_list" /></li>
@@ -36,7 +36,7 @@
                             <li><h:link value="Logout" outcome="index" /></li>
                         </c:when> 
 
-                        <c:when test="${lookupControl.userType == 'Owner'}"> 
+                        <c:when test="${lookupControl.userType == 'owner'}"> 
                             <li><h:link value="Home" outcome="index" /></li>
                             <li><h:link value="View Account" outcome="view_account" /></li>
                             <li><h:link value="View Properties" outcome="view_properties" /></li>
