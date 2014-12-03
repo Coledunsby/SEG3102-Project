@@ -141,8 +141,8 @@ public class OPR implements Serializable{
             UserAccount user = new UserAccount();
             Query query = em.createQuery("Select u From UserAccount u "
                     + "where u.username = :username AND u.password = :password");
-            query.setParameter(":username", username);
-            query.setParameter(":password", password);
+            query.setParameter("username", username);
+            query.setParameter("password", password);
             user = (UserAccount) performQuery(query).get(0);
             return true;
         } catch(IllegalArgumentException e){}
@@ -153,7 +153,7 @@ public class OPR implements Serializable{
         try{            
             Query query = em.createQuery("Select p From Property p "
                     + "where p.location = :location");
-            query.setParameter(":locaton", location);
+            query.setParameter("locaton", location);
             return performQuery(query);
         } catch(IllegalArgumentException e){}
         return null;
@@ -163,7 +163,7 @@ public class OPR implements Serializable{
         try{            
             Query query = em.createQuery("Select p From Property p "
                     + "where p.type = :type");
-            query.setParameter(":type", type);
+            query.setParameter("type", type);
             return performQuery(query);
         } catch(IllegalArgumentException e){}
         return null;
@@ -173,7 +173,7 @@ public class OPR implements Serializable{
         try{            
             Query query = em.createQuery("Select p From Property p "
                     + "where p.numBedrooms = :bedRooms");
-            query.setParameter(":bedRooms", bedRooms);
+            query.setParameter("bedRooms", bedRooms);
             return performQuery(query);
         } catch(IllegalArgumentException e){}
         return null;
@@ -183,7 +183,7 @@ public class OPR implements Serializable{
         try{            
             Query query = em.createQuery("Select p From Property p "
                     + "where p.numBathrooms = :bathRooms");
-            query.setParameter(":bathRooms", bathRooms);
+            query.setParameter("bathRooms", bathRooms);
             return performQuery(query);
         } catch(IllegalArgumentException e){}
         return null;
@@ -193,7 +193,7 @@ public class OPR implements Serializable{
         try{            
             Query query = em.createQuery("Select p From Property p "
                     + "where p.numOtherRooms = :otherRooms");
-            query.setParameter(":otherRomos", otherRooms);
+            query.setParameter("otherRomos", otherRooms);
             return performQuery(query);
         } catch(IllegalArgumentException e){}
         return null;
@@ -203,7 +203,7 @@ public class OPR implements Serializable{
         try{            
             Query query = em.createQuery("Select p From Property p "
                     + "where p.rent >= :minRent");
-            query.setParameter(":minRent", minRent);
+            query.setParameter("minRent", minRent);
             return performQuery(query);
         } catch(IllegalArgumentException e){}
         return null;
@@ -213,7 +213,7 @@ public class OPR implements Serializable{
         try{            
             Query query = em.createQuery("Select p From Property p "
                     + "where p.rent <= :maxRent");
-            query.setParameter(":maxRent", maxRent);
+            query.setParameter("maxRent", maxRent);
             return performQuery(query);
         } catch(IllegalArgumentException e){}
         return null;
@@ -262,7 +262,7 @@ public class OPR implements Serializable{
             String id = account.getId();
             Query query = em.createQuery("Select a From UserAccount a "
                     + "where a.userID = :id");
-            query.setParameter(":id", id);
+            query.setParameter("id", id);
             return performQuery(query);
         } catch(IllegalArgumentException e){}
         return null;
@@ -273,7 +273,7 @@ public class OPR implements Serializable{
             String id = customer.getId();
             Query query = em.createQuery("Select c.visitingList From Customer c "
                     + "where c.id = :id");
-            query.setParameter(":id", id);
+            query.setParameter("id", id);
             return performQuery(query);
         } catch(IllegalArgumentException e){}
         return null;
