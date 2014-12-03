@@ -22,7 +22,7 @@
                 <ui:insert name="left">
                     
                     <c:choose> 
-                        <c:when test="${lookupControl.userType == 'None'}"> 
+                        <c:when test="${lookupControl.userType == null}"> 
                             <li><h:link value="Login" outcome="login" /></li>
                             <li><h:link value="Create Account" outcome="create_account" /></li>
                         </c:when> 
