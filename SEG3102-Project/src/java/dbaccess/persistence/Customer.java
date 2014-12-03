@@ -19,9 +19,9 @@ import javax.persistence.Table;
 @Table(name="Customer")
 public class Customer extends User implements Serializable {
     @OneToOne
-    private Tenant tenant;
-    private static final long serialVersionUID = 1L;
-    private double maxRent;
+    protected Tenant tenant;
+    protected static final long serialVersionUID = 1L;
+    protected double maxRent;
     @OneToOne
     protected VisitingList visitingList = new VisitingList();
 

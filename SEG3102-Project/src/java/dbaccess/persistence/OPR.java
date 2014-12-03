@@ -58,6 +58,7 @@ public class OPR implements Serializable{
             nprop.setRent(propdata.getRent());
             nprop.setActive(true);
             nprop.setOwner(owner);
+            em.persist(nprop);
             utx.commit();
             return true;
         } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex){
