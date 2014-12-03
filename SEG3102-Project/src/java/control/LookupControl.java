@@ -70,19 +70,20 @@ public class LookupControl implements Serializable{
     
     public void addProperty(){
         if (userData.getUser() instanceof Owner) {
-            OPR.newProperty(em, utx, propertyData, userData.getUser());
+            OPR.newProperty(em, utx, propertyData, (Owner) userData.getUser());
         }
     }
     
     public void addVisitList(){
         if (userData.getUser() instanceof Customer){
-            OPR.addToVisitingList(em, utx, userData.getUser(), propertyData.getProperty());
+            OPR.addToVisitingList(em, utx, (Customer) userData.getUser(), propertyData.getProperty());
         }
     }
     
     public void viewProperties(){
         if (userData.getUser() instanceof Owner){
-            PropertyData.setLookupResults(OPR.viewProperties(em, (Owner) userData.getUser()));
+            List<Property> results = OPR.viewProperties(em, (Owner) userData.getUser());            
+            propertyData.setLookupResults(results);
         }
     }
     
@@ -122,22 +123,22 @@ public class LookupControl implements Serializable{
             results = getPropertiesByLocation(em,propertyData);
         } else if(!"".equals(propertyData.getType())){
             results = getPropertiesByType(em,propertyData);
-        } else if(!"".equals(propertyData.getNumBedrooms())){
+        } else if(propertyData.getNumBedrooms() != -1){
             results = getPropertiesByBedRooms(em,propertyData);
-        } else if(!"".equals(propertyData.getNumBathooms())){
+        } else if(propertyData.getNumBathrooms() != -1){
             results = getPropertiesByBathRooms(em,propertyData);
-        } else if(!"".equals(propertyData.getNumOtherRooms())){
+        } else if(propertyData.getNumOtherRooms() != -1){
             results = getPropertiesByOtherRooms(em,propertyData);
-        } else if(!"".equals(propertyData.getMinRent())){
+        } else if(propertyData.getMinRent() != -1){
             results = getPropertiesByMinRent(em,propertyData);
-        } else if(!"".equals(propertyData.getMaxRent())){
+        } else if(propertyData.getMaxRent() != -1){
             results = getPropertiesByMaxRent(em,propertyData);
         }
-        propertyData.setLookip(results);
+        propertyData.setLookupResults(results);
     }
     
     private List<Property> getPropertiesByLocation(EntityManager em,PropertyData propertyData) {
-       List<Property> allresults = OPR.searchPropertiesByLocation(em,propertyData.getlocation());
+       List<Property> allresults = OPR.searchPropertiesByLocation(em,propertyData.getLocation());
        if (allresults == null) return null;
        return checkResults(allresults,propertyData);          
     }

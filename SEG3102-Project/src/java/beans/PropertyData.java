@@ -5,6 +5,9 @@
  */
 package beans;
 
+import dbaccess.persistence.Property;
+import dbaccess.persistence.User;
+import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -22,6 +25,8 @@ public class PropertyData {
     private int numBathrooms;
     private int numOtherRooms;
     private int rent;
+    private Property property;
+    private List<Property> lookupResults;
 
     /**
      * Creates a new instance of UserData
@@ -125,5 +130,21 @@ public class PropertyData {
      */
     public void setRent(String rent) {
         this.rent = Integer.parseInt(rent);
+    }
+    
+    public Property getProperty(){
+        return property;
+    }
+    
+    public void setProperty(Property property){
+        this.property = property;
+    }
+    
+    public void setLookupResults(List<Property> results) {
+        this.lookupResults = results;
+    }
+    
+    public List<Property> getLookupResults() {
+        return lookupResults;
     }
 }

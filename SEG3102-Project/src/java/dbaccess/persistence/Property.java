@@ -5,6 +5,7 @@
  */
 package dbaccess.persistence;
 
+import beans.PropertyData;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Entity;
@@ -25,25 +26,25 @@ public class Property implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long pid;
+    private String pid;
     private String type;
     private String address;
     private String location;
-    private int numBedrooms;
-    private int numBathrooms;
-    private int numOtherRooms;
-    private double rent;
+    private int numBedrooms = -1;
+    private int numBathrooms = -1;
+    private int numOtherRooms = -1;
+    private double rent = -1;
     private boolean active;
     @OneToMany
     protected Collection<Photo> photos;
     @ManyToOne
     protected Owner owner;
 
-    public Long getId() {
+    public String getId() {
         return pid;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.pid = id;
     }
 
@@ -142,6 +143,25 @@ public class Property implements Serializable {
     @Override
     public String toString() {
         return "dbaccess.persistence.Property[ id=" + pid + " ]";
+    }
+
+    public boolean matches(PropertyData propertyData) {
+        if (!"".equals(propertyData.getType()) && !this.getType().trim().equals(propertyData.getType().trim())) {
+                return false;
+        } else if (!"".equals(propertyData.getLocation()) && !this.getType().trim().equals(propertyData.getLocation().trim())) {
+                return false;
+        } else if (!"".equals(propertyData.getAddress()) && !this.getType().trim().equals(propertyData.getAddress().trim())) {
+                return false;
+        } else if (propertyData.getNumBedrooms() != -1 && propertyData.getNumBedrooms() != this.getNumBedrooms()){
+            return false;
+        } else if (propertyData.getNumBathrooms() != -1 && propertyData.getNumBathrooms() != this.getNumBathrooms()){
+            return false;
+        } else if (propertyData.getNumOtherRooms() != -1 && propertyData.getNumOtherRooms() != this.getNumOtherRooms()){
+            return false;
+        } else if (propertyData.getRent() != -1 && propertyData.getRent() != this.getRent()){
+            return false;
+        }
+        return true;    
     }
     
 }
