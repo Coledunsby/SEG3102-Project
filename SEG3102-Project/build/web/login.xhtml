@@ -27,10 +27,16 @@
 
                         </h:panelGrid>
 
-                        <h:commandButton value="Create Account" type="command" actionListener="#{lookupControl.add}">
-                            <f:ajax execute="username password" render="usernameMsg passwordMsg"/>
+                        <h:commandButton value="Login" type="command" actionListener="#{lookupControl.login()}">
+                            <f:ajax execute="username password" render="status usernameMsg passwordMsg"/>
                         </h:commandButton>
                         <h:commandButton value="Reset" type="reset" />
+                        
+                        <div>
+                            <hr/>
+                            <h:outputText  style="color: royalblue; font-size: medium; font-weight: bold" id="status" value="#{userData.addstatus}"/>
+                        </div>
+                        
                     </h:form>
                 </f:view>
             </ui:define>

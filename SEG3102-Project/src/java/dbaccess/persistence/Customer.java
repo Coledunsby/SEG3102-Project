@@ -25,6 +25,10 @@ public class Customer extends User implements Serializable {
     @OneToOne
     protected VisitingList visitingList = new VisitingList();
 
+    public Customer() {
+        
+    }
+    
     public Customer(UserAccount account) {
         super(account);
     }

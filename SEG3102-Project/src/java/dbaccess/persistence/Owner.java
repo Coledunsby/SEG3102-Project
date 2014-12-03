@@ -25,6 +25,10 @@ public class Owner extends User implements Serializable {
     @OneToMany(mappedBy = "owner")
     protected Collection<Property> properties;
     
+    public Owner() {
+        
+    }
+    
     public Owner(UserAccount account) {
         super(account);
     }

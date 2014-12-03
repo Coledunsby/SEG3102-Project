@@ -30,6 +30,10 @@ public class Tenant implements Serializable {
     @ManyToOne
     protected Rental rental;
     
+    public Tenant() {
+        
+    }
+    
     public Tenant(Customer cust, Rental rental){
         this.cust = cust;
         this.rental = rental;

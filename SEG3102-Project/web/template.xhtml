@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -19,24 +20,29 @@
         <div>
             <div id="left">
                 <ui:insert name="left">
-                    <!-- Not logged in -->
-                    <li><h:link value="Login" outcome="login" /></li>
-                    <li><h:link value="Create Account" outcome="create_account" /></li>
-                    <li></li>
                     
-                    <!-- Customer -->
-                    <li><h:link value="Home" outcome="index" /></li>
-                    <li><h:link value="View Account" outcome="view_account" /></li>
-                    <li><h:link value="View Visiting List" outcome="view_visiting_list" /></li>
-                    <li><h:link value="View Properties" outcome="view_properties" /></li>
-                    <li><h:link value="Logout" outcome="index" /></li>
-                    <li></li>
-                    <!-- Owner -->
-                    <li><h:link value="Home" outcome="index" /></li>
-                    <li><h:link value="View Account" outcome="view_account" /></li>
-                    <li><h:link value="View Properties" outcome="view_properties" /></li>
-                    <li><h:link value="Add Property" outcome="add_property" /></li>
-                    <li><h:link value="Logout" outcome="index" /></li>
+                    <c:choose> 
+                        <c:when test="${lookupControl.userType == 'None'}"> 
+                            <li><h:link value="Login" outcome="login" /></li>
+                            <li><h:link value="Create Account" outcome="create_account" /></li>
+                        </c:when> 
+                        
+                        <c:when test="${lookupControl.userType == 'Customer'}"> 
+                            <li><h:link value="Home" outcome="index" /></li>
+                            <li><h:link value="View Account" outcome="view_account" /></li>
+                            <li><h:link value="View Visiting List" outcome="view_visiting_list" /></li>
+                            <li><h:link value="View Properties" outcome="view_properties" /></li>
+                            <li><h:link value="Logout" outcome="index" /></li>
+                        </c:when> 
+
+                        <c:when test="${lookupControl.userType == 'Owner'}"> 
+                            <li><h:link value="Home" outcome="index" /></li>
+                            <li><h:link value="View Account" outcome="view_account" /></li>
+                            <li><h:link value="View Properties" outcome="view_properties" /></li>
+                            <li><h:link value="Add Property" outcome="add_property" /></li>
+                            <li><h:link value="Logout" outcome="index" /></li>
+                        </c:when> 
+                    </c:choose>
                     
                 </ui:insert>
             </div>

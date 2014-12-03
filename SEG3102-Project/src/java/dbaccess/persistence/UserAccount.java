@@ -7,7 +7,6 @@ package dbaccess.persistence;
 
 import java.io.Serializable;
 import java.sql.Time;
-import java.sql.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -34,8 +34,8 @@ public class UserAccount implements Serializable {
     private String lastName;
     private String email;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date creationDate;
+    @Temporal(TemporalType.DATE)
+    private java.util.Date creationDate;
     private Time creationTime;
     private boolean active;
     @OneToOne
@@ -89,11 +89,11 @@ public class UserAccount implements Serializable {
         this.email = email;
     }
     
-    public Date getCreationDate(){
+    public java.util.Date getCreationDate(){
         return creationDate;
     }
     
-    public void setCreationDate(Date creationDate){
+    public void setCreationDate(java.util.Date creationDate){
         this.creationDate = creationDate;
     }
     

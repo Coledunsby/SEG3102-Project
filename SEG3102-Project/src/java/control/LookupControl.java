@@ -12,7 +12,6 @@ import dbaccess.persistence.Customer;
 import dbaccess.persistence.OPR;
 import dbaccess.persistence.Owner;
 import dbaccess.persistence.Property;
-import dbaccess.persistence.User;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,10 +42,19 @@ public class LookupControl implements Serializable{
      * Creates a new instance of lookupControl
      */
     public LookupControl() {
+        
     }
     
-    public void login(){
-        if (OPR.login(em, userData.getUsername(), userData.getPassword())){
+    public String getUserType() {
+        if (userData.getUser() != null){
+            return userData.getType();
+        } else {
+            return "None";
+        }
+    }
+    
+    public void login() {
+        if (OPR.login(em, userData.getUsername(), userData.getPassword())) {
             userData.setUser(OPR.getUser(em, userData.getUsername()));
             userData.setAddstatus("The User was successfully logged in.");
         } else {
@@ -54,14 +62,14 @@ public class LookupControl implements Serializable{
         }
     }
     
-    public void logout(){        
+    public void logout() {        
         if (userData.getUser() != null){
             userData.setUser(null);
         } 
     }
     
     public void addProperty(){
-        if (userData.getUser() instanceof Owner){
+        if (userData.getUser() instanceof Owner) {
             OPR.newProperty(em, utx, propertyData, userData.getUser());
         }
     }
@@ -78,7 +86,7 @@ public class LookupControl implements Serializable{
         }
     }
     
-    public void addAccount(){
+    public void addAccount() {
         if (agent != null){
             OPR.newAccount(em, utx, userData, agent);
         }
