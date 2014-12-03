@@ -18,16 +18,19 @@ import javax.persistence.Table;
  * @author Simon
  */
 @Entity
-@Table(name="User")
+@Table(name="User2")
 @DiscriminatorValue("c")
 public class Customer extends User implements Serializable {
+    
+    private static final long serialVersionUID = 1L;
+    
     @OneToOne(cascade = CascadeType.PERSIST)
     private Tenant tenant;
-    private static final long serialVersionUID = 1L;
-    private double maxRent;
+    
     @OneToOne(cascade = CascadeType.PERSIST)
-
     protected VisitingList visitingList = new VisitingList();
+    
+    private double maxRent;
 
     public Customer() {
         

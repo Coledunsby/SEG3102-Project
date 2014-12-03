@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author Simon
  */
 @Entity
-@Table(name="User")
+@Table(name="User2")
 @DiscriminatorValue("o")
 public class Owner extends User implements Serializable {
     

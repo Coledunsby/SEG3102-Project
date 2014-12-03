@@ -24,14 +24,16 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="User")
+@Table(name="User2")
 @Inheritance(strategy=JOINED)
 @DiscriminatorValue("u")
 @DiscriminatorColumn(name="User_type")
 public class User implements Serializable{
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected String id;
+    
     @OneToOne(mappedBy = "user", cascade = CascadeType.PERSIST)
     protected UserAccount account;
     
