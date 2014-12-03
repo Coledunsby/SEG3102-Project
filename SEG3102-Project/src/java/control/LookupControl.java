@@ -72,7 +72,7 @@ public class LookupControl implements Serializable{
     }
     
     public void logout() {        
-        userData = null;
+        userData.logout();
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
         } catch (IOException ex) {

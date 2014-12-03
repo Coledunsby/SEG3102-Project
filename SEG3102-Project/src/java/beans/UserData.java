@@ -5,6 +5,7 @@
  */
 package beans;
 
+import dbaccess.persistence.Customer;
 import dbaccess.persistence.User;
 import java.io.Serializable;
 import java.util.List;
@@ -24,7 +25,7 @@ public class UserData implements Serializable {
     private String lastName;
     private String email;
     private String type;
-    private String maxRent;
+    private double maxRent;
     private User user;
     private String addStatus;
     private List<User> lookupResults;
@@ -122,14 +123,14 @@ public class UserData implements Serializable {
     /**
      * @return the maxRent
      */
-    public String getMaxRent() {
+    public double getMaxRent() {
         return maxRent;
     }
 
     /**
      * @param maxRent the maxRent to set
      */
-    public void setMaxRent(String maxRent) {
+    public void setMaxRent(double maxRent) {
         this.maxRent = maxRent;
     }
     
@@ -163,6 +164,17 @@ public class UserData implements Serializable {
     
     public void setUser(User user){
         this.user = user;
+        this.email = user.getUserAccount().getEmail();
+        this.givenName = user.getUserAccount().getGivenName();
+        this.lastName = user.getUserAccount().getLastName();
+        if (user instanceof Customer){
+            this.type = "customer";
+            this.maxRent = user.getMaxRent();
+        } else {
+            this.type = "owner";
+        }
+        this.username = user.getUserAccount().getUsername();
+        this.password = user.getUserAccount().getPassword();
     }
     
     public void logout(){
@@ -174,7 +186,7 @@ public class UserData implements Serializable {
         lastName = null;
         email = null;
         lookupResults = null;
-        maxRent = null;
+        maxRent = -1;
         addStatus = null;
     }
 }
