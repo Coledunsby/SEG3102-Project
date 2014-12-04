@@ -8,6 +8,7 @@ package dbaccess.persistence;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,8 +27,8 @@ public class VisitingList implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
-    @OneToMany
-    protected List<Visitation> visits;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Visitation> visits;
     
     public VisitingList(){
         visits = new ArrayList<>();
@@ -73,7 +74,6 @@ public class VisitingList implements Serializable {
     void addProperty(Property property) {
         Visitation visit = new Visitation();
         visits.add(visit);
-        visit.setId(Integer.toString(visits.size()));
         visit.setProperty(property);
     }
     

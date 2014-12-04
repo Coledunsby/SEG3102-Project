@@ -97,9 +97,9 @@ public class LookupControl implements Serializable{
         }
     }
     
-    public void addVisitList(){
+    public void addVisitList(Property property){
         if (userData.getUser() instanceof Customer){
-            OPR.addToVisitingList(em, utx, (Customer) userData.getUser(), propertyData.getProperty());
+            OPR.addToVisitingList(em, utx, (Customer) userData.getUser(), property);
         }
     }
     

@@ -65,43 +65,46 @@
                             <hr/>
                                 <h:panelGroup id="results">
                                     <h:dataTable  rendered="#{propertyData.getShowResults()}" cellpadding="5" border="1" id="resultTable" value="#{propertyData.getLookupResults()}" var="property">                                   
-                                    <h:column>    				
-                                        <f:facet name="header">Photos</f:facet> 
-                                        <h:graphicImage id="photo1" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
-                                        <h:graphicImage id="photo2" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
-                                        <h:graphicImage id="photo3" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
-                                        <h:graphicImage id="photo4" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
-                                        <h:graphicImage id="photo5" width="25" height="25" value="resources/thumbnail.png" /> 								
-                                    </h:column>
-                                    <h:column>      
-                                        <f:facet name="header">Type</f:facet>
-                                        #{property.type}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Address</f:facet>
-                                        #{property.address}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Location</f:facet>
-                                        #{property.location}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Bedrooms</f:facet>
-                                        #{property.numBedrooms}
-                                    </h:column>
-                                    <h:column>  
-                                        <f:facet name="header">Bathrooms</f:facet>
-                                        #{property.numBathrooms}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Other Rooms</f:facet>
-                                        #{property.numOtherRooms}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header">Rent</f:facet>
-                                        #{property.rent}
-                                    </h:column>
-                                </h:dataTable>
+                                        <h:column>    				
+                                            <f:facet name="header">Photos</f:facet> 
+                                            <h:graphicImage id="photo1" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                            <h:graphicImage id="photo2" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                            <h:graphicImage id="photo3" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                            <h:graphicImage id="photo4" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                            <h:graphicImage id="photo5" width="25" height="25" value="resources/thumbnail.png" /> 								
+                                        </h:column>
+                                        <h:column>      
+                                            <f:facet name="header">Type</f:facet>
+                                            #{property.type}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Address</f:facet>
+                                            #{property.address}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Location</f:facet>
+                                            #{property.location}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Bedrooms</f:facet>
+                                            #{property.numBedrooms}
+                                        </h:column>
+                                        <h:column>  
+                                            <f:facet name="header">Bathrooms</f:facet>
+                                            #{property.numBathrooms}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Other Rooms</f:facet>
+                                            #{property.numOtherRooms}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">Rent</f:facet>
+                                            #{property.rent}
+                                        </h:column>
+                                        <h:column>
+                                            <h:form><h:commandButton value="Add to Visiting List" action="#{lookupControl.addVisitList(property)}" /></h:form>
+                                        </h:column>
+                                    </h:dataTable>
                                 <h:outputText rendered="#{propertyData.getShowMessage()}" style="color:red" id="resultMessage" value="No Property Found"/>
                             </h:panelGroup>
                         </div>

@@ -69,7 +69,12 @@ public class OPR implements Serializable{
     public static boolean addToVisitingList(EntityManager em, UserTransaction utx, Customer customer, Property property){
         try{
             utx.begin();
+            System.out.println("*****" + property.getLocation() + "*****");
+            System.out.println("*****" + customer + "*****");
+            System.out.println("*****" + customer.getVisitingList() + "*****");
+            System.out.println("*****" + customer.getVisitingList().getVisits() + "*****");
             customer.addVisit(property);
+            em.merge(customer);
             utx.commit();
             return true;
         } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex){
