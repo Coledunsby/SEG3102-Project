@@ -45,25 +45,25 @@
 
                             <h:outputText value="Number of Bedrooms"></h:outputText>
                             <h:inputText id="bedrooms" value="#{propertyData.numBedrooms}" required="true" requiredMessage="Please enter the Number of Bedrooms.">
-                                <!--<f:validator validatorId="numberValidator"/>-->
+                                <f:validator validatorId="numberValidator"/>
                             </h:inputText>
                             <h:message id="bedroomsMsg" for="bedrooms" errorStyle="color:red; display:block"/>
 
                             <h:outputText value="Number of Bathrooms"></h:outputText>
                             <h:inputText id="bathrooms" value="#{propertyData.numBathrooms}" required="true" requiredMessage="Please enter the Number of Bathrooms.">
-                                <!--<f:validator validatorId="numberValidator"/>-->
+                                <f:validator validatorId="numberValidator"/>
                             </h:inputText>
                             <h:message id="bathroomsMsg" for="bathrooms" errorStyle="color:red; display:block"/>
 
                             <h:outputText value="Number of Other Rooms"></h:outputText>
                             <h:inputText id="other" value="#{propertyData.numOtherRooms}" required="true" requiredMessage="Please enter the Number of Other Rooms.">
-                                <!--<f:validator validatorId="numberValidator"/>-->
+                                <f:validator validatorId="numberValidator"/>
                             </h:inputText>
                             <h:message id="otherMsg" for="other" errorStyle="color:red; display:block"/>
                             
                             <h:outputText value="Rent"></h:outputText>
                             <h:inputText id="rent" value="#{propertyData.rent}" required="true" requiredMessage="Please enter the Rent.">
-                                <!--<f:validator validatorId="numberValidator"/>-->
+                                <f:validator validatorId="numberValidator"/>
                             </h:inputText>
                             <h:message id="rentMsg" for="rent" errorStyle="color:red; display:block"/>
 

@@ -186,7 +186,7 @@ public class UserData implements Serializable {
         lastName = null;
         email = null;
         lookupResults = null;
-        maxRent = -1;
+        maxRent = 0;
         addStatus = null;
     }
 }

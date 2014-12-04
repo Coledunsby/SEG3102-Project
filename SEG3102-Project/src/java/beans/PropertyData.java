@@ -201,6 +201,8 @@ public class PropertyData implements Serializable {
         this.numBedrooms = 0;
         this.numOtherRooms = 0;
         this.rent = 0;
+        this.maxRent = 0;
+        this.minRent = 0;
         this.addStatus = null;
     }
 }
