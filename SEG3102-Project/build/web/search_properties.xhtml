@@ -65,7 +65,12 @@
                             <hr/>
                                 <h:panelGroup id="results">
                                     <h:dataTable  rendered="#{propertyData.showResults}" border="2" bgcolor="yellow" id="resultTable" value="#{propertyData.getLookupResults()}" var="property">                                    <h:column>    				
-                                        <f:facet name="header">Photos</f:facet>    				
+                                        <f:facet name="header">Photos</f:facet> 
+                                        <h:graphicImage id="photo1" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                        <h:graphicImage id="photo2" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                        <h:graphicImage id="photo3" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                        <h:graphicImage id="photo4" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                                        <h:graphicImage id="photo5" width="25" height="25" value="resources/thumbnail.png" />
                                     </h:column>
                                     <h:column>      
                                         <f:facet name="header">Type</f:facet>
