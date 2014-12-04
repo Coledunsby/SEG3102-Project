@@ -29,13 +29,31 @@ public class NumberValidator implements Validator {
     public void validate(FacesContext context,
                         UIComponent component,
                         Object value) throws ValidatorException {
-        int number = (int)value;
-
-        if (number < 0) {
+        if (value instanceof Integer){
+            int number = (int) value;
+            if (number < 0) {
+                FacesMessage message = new FacesMessage();
+                message.setSeverity(FacesMessage.SEVERITY_ERROR);
+                message.setSummary("Field is not valid.");
+                message.setDetail("Field is not valid. Must be >= 0.");
+                context.addMessage("", message);
+                throw new ValidatorException(message);
+            }
+        } else if (value instanceof Double){
+            double number = (double) value;
+            if (number < 0) {
+                FacesMessage message = new FacesMessage();
+                message.setSeverity(FacesMessage.SEVERITY_ERROR);
+                message.setSummary("Field is not valid.");
+                message.setDetail("Field is not valid. Must be >= 0.");
+                context.addMessage("", message);
+                throw new ValidatorException(message);
+            }
+        }  else {
             FacesMessage message = new FacesMessage();
             message.setSeverity(FacesMessage.SEVERITY_ERROR);
             message.setSummary("Field is not valid.");
-            message.setDetail("Field is not valid. Must be >= 0.");
+            message.setDetail("Field is not valid. Must be a number");
             context.addMessage("", message);
             throw new ValidatorException(message);
         }

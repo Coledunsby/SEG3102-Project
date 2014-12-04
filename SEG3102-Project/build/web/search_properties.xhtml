@@ -20,7 +20,7 @@
                                 <f:selectItem itemValue="1" itemLabel="Zone 1" />
                                 <f:selectItem itemValue="2" itemLabel="Zone 2" />
                             </h:selectOneMenu>
-                            <h:message id="locationMsg" for="type" errorStyle="color:red; display:block"/>
+                            <h:message id="locationMsg" for="location" errorStyle="color:red; display:block"/>
                             
                             <h:outputText value="Type"></h:outputText>
                             <h:selectOneMenu id="type" value="#{propertyData.type}">
@@ -56,9 +56,49 @@
                         </h:panelGrid>
 
                         <h:commandButton value="Search Property" type="command" actionListener="#{lookupControl.lookupProperty()}">
-                            <f:ajax execute="bedrooms bathrooms min_rent max_rent" render="bedroomsMsg bathroomsMsg min_rentMsg max_rentMsg"/>
+                            <f:ajax execute="location type bedrooms bathrooms min_rent max_rent" render="bedroomsMsg bathroomsMsg min_rentMsg max_rentMsg results"/>
                         </h:commandButton>
                         <h:commandButton value="Reset" type="reset" />
+                        
+                        <div>
+                            <hr/>
+                            <hr/>
+                                <h:panelGroup id="results">
+                                    <h:dataTable  rendered="#{propertyData.showResults}" border="2" bgcolor="yellow" id="resultTable" value="#{propertyData.getLookupResults()}" var="property">                                    <h:column>    				
+                                        <f:facet name="header">Photos</f:facet>    				
+                                    </h:column>
+                                    <h:column>      
+                                        <f:facet name="header">Type</f:facet>
+                                        #{property.type}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Address</f:facet>
+                                        #{property.address}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Location</f:facet>
+                                        #{property.location}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Bedrooms</f:facet>
+                                        #{property.numBedrooms}
+                                    </h:column>
+                                    <h:column>  
+                                        <f:facet name="header">Bathrooms</f:facet>
+                                        #{property.numBathrooms}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Other Rooms</f:facet>
+                                        #{property.numOtherRooms}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">Rent</f:facet>
+                                        #{property.rent}
+                                    </h:column>
+                                </h:dataTable>
+                                <h:outputText rendered="#{propertyData.showMessage}" style="color:red" id="resultMessage" value="No Property Found"/>
+                            </h:panelGroup>
+                        </div>
                     </h:form>
                 </f:view>
             </ui:define>

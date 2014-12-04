@@ -150,6 +150,15 @@ public class PropertyData {
         return lookupResults;
     }
     
+    // show results if any
+    public boolean getShowResults() {
+        return (lookupResults != null) && !lookupResults.isEmpty();
+    }
+    // show message if no result
+    public boolean getShowMessage() {
+        return (lookupResults != null) && lookupResults.isEmpty();
+    }
+    
     public double getMinRent(){
         return minRent;
     }

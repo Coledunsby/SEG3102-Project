@@ -36,12 +36,11 @@ public class OPR implements Serializable{
     }
     
     public static User getUser(EntityManager em, String username) {
-        try{            
+                   
             Query query = em.createQuery("Select u From User u, UserAccount ua where ua.username = :username AND u.account = ua");
             query.setParameter("username", username);
             return (User) performQuery(query).get(0);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
     
     public static boolean newProperty(EntityManager em, UserTransaction utx, PropertyData propdata, Owner owner){
@@ -80,12 +79,11 @@ public class OPR implements Serializable{
     }
     
     public static List viewProperties(EntityManager em, Owner owner){
-        try{            
+                    
             Query query = em.createQuery("Select p From Property p where p.owner = :owner And p.active = true");
             query.setParameter("owner", owner);
             return performQuery(query);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
     
     public static boolean newAccount(EntityManager em, UserTransaction utx, UserData userData, Agent agent){
@@ -137,7 +135,7 @@ public class OPR implements Serializable{
     }
     
     public static boolean login(EntityManager em, String username, String password){
-        try{      
+             
             UserAccount user = new UserAccount();
             Query query = em.createQuery("Select u From UserAccount u "
                     + "where u.username = :username AND u.password = :password");
@@ -145,78 +143,70 @@ public class OPR implements Serializable{
             query.setParameter("password", password);
             user = (UserAccount) performQuery(query).get(0);
             return true;
-        } catch(IllegalArgumentException e){}
-        return false;
+        
     }
     
     public static List searchPropertiesByLocation(EntityManager em, String location){
-        try{            
+                    
             Query query = em.createQuery("Select p From Property p "
                     + "where p.location = :location");
-            query.setParameter("locaton", location);
+            query.setParameter("location", location);
             return performQuery(query);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
     
     public static List searchPropertiesByType(EntityManager em, String type){
-        try{            
+                   
             Query query = em.createQuery("Select p From Property p "
                     + "where p.type = :type");
             query.setParameter("type", type);
             return performQuery(query);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
     
     public static List searchPropertiesByBedRooms(EntityManager em, int bedRooms){
-        try{            
+                   
             Query query = em.createQuery("Select p From Property p "
                     + "where p.numBedrooms = :bedRooms");
             query.setParameter("bedRooms", bedRooms);
             return performQuery(query);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
     
     public static List searchPropertiesByBathRooms(EntityManager em, int bathRooms){
-        try{            
+                   
             Query query = em.createQuery("Select p From Property p "
                     + "where p.numBathrooms = :bathRooms");
             query.setParameter("bathRooms", bathRooms);
             return performQuery(query);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
     
     public static List searchPropertiesByOtherRooms(EntityManager em, int otherRooms){
-        try{            
+                   
             Query query = em.createQuery("Select p From Property p "
                     + "where p.numOtherRooms = :otherRooms");
             query.setParameter("otherRomos", otherRooms);
             return performQuery(query);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
     
     public static List searchPropertiesByMinRent(EntityManager em, double minRent){
-        try{            
+                    
             Query query = em.createQuery("Select p From Property p "
                     + "where p.rent >= :minRent");
             query.setParameter("minRent", minRent);
             return performQuery(query);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
     
     public static List searchPropertiesByMaxRent(EntityManager em, double maxRent){
-        try{            
+                   
             Query query = em.createQuery("Select p From Property p "
                     + "where p.rent <= :maxRent");
             query.setParameter("maxRent", maxRent);
             return performQuery(query);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
     
     public static boolean updateAccount(EntityManager em, UserTransaction utx, UserAccount account, UserData userData){
@@ -258,25 +248,23 @@ public class OPR implements Serializable{
     }
     
     public static List viewAccount(EntityManager em, UserAccount account){
-        try{
+        
             String id = account.getId();
             Query query = em.createQuery("Select a From UserAccount a "
                     + "where a.userID = :id");
             query.setParameter("id", id);
             return performQuery(query);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
     
     public static List viewVisitingList(EntityManager em, Customer customer){
-        try{
+        
             String id = customer.getId();
             Query query = em.createQuery("Select c.visitingList From Customer c "
                     + "where c.id = :id");
             query.setParameter("id", id);
             return performQuery(query);
-        } catch(IllegalArgumentException e){}
-        return null;
+        
     }
 
     private static List performQuery(final Query query) {

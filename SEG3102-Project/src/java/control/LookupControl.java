@@ -145,11 +145,11 @@ public class LookupControl implements Serializable{
             results = getPropertiesByLocation(em,propertyData);
         } else if(!"".equals(propertyData.getType())){
             results = getPropertiesByType(em,propertyData);
-        } else if(propertyData.getNumBedrooms() != -1){
+        } else if(propertyData.getNumBedrooms() != 0){
             results = getPropertiesByBedRooms(em,propertyData);
-        } else if(propertyData.getNumBathrooms() != -1){
+        } else if(propertyData.getNumBathrooms() != 0){
             results = getPropertiesByBathRooms(em,propertyData);
-        } else if(propertyData.getNumOtherRooms() != -1){
+        } else if(propertyData.getNumOtherRooms() != 0){
             results = getPropertiesByOtherRooms(em,propertyData);
         } else if(propertyData.getMinRent() != -1){
             results = getPropertiesByMinRent(em,propertyData);
