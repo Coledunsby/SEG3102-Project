@@ -149,7 +149,7 @@ public class OPR implements Serializable{
             query.setParameter("password", password);
             List<UserAccount> users = performQuery(query);
             boolean found = true;
-            if (users.isEmpty()){
+            if (users == null){
                 found = false;
             }
             return found;
