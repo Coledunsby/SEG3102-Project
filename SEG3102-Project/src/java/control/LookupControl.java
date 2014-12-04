@@ -187,47 +187,48 @@ public class LookupControl implements Serializable{
             results = getPropertiesByMaxRent(em,propertyData);
         }
         propertyData.setLookupResults(results);
+        propertyData.reset();
     }
     
     private List<Property> getPropertiesByLocation(EntityManager em,PropertyData propertyData) {
        List<Property> allresults = OPR.searchPropertiesByLocation(em,propertyData.getLocation());
-       if (allresults == null) return null;
+       if (allresults == null) return new ArrayList<>();
        return allresults;          
     }
     
     private List<Property> getPropertiesByType(EntityManager em,PropertyData propertyData) {
        List<Property> allresults = OPR.searchPropertiesByType(em,propertyData.getType());
-       if (allresults == null) return null;
+       if (allresults == null) return new ArrayList<>();
        return allresults;          
     }
     
     private List<Property> getPropertiesByBedRooms(EntityManager em,PropertyData propertyData) {
        List<Property> allresults = OPR.searchPropertiesByBedRooms(em,propertyData.getNumBedrooms());
-       if (allresults == null) return null;
+       if (allresults == null) return new ArrayList<>();
        return allresults;          
     }
     
     private List<Property> getPropertiesByBathRooms(EntityManager em,PropertyData propertyData) {
        List<Property> allresults = OPR.searchPropertiesByBathRooms(em,propertyData.getNumBathrooms());
-       if (allresults == null) return null;
+       if (allresults == null) return new ArrayList<>();
        return allresults;          
     }
     
     private List<Property> getPropertiesByOtherRooms(EntityManager em,PropertyData propertyData) {
        List<Property> allresults = OPR.searchPropertiesByOtherRooms(em,propertyData.getNumOtherRooms());
-       if (allresults == null) return null;
+       if (allresults == null) return new ArrayList<>();
        return allresults;          
     }
     
     private List<Property> getPropertiesByMinRent(EntityManager em,PropertyData propertyData) {
        List<Property> allresults = OPR.searchPropertiesByMinRent(em,propertyData.getMinRent());
-       if (allresults == null) return null;
+       if (allresults == null) return new ArrayList<>();
        return allresults;          
     }
     
     private List<Property> getPropertiesByMaxRent(EntityManager em,PropertyData propertyData) {
        List<Property> allresults = OPR.searchPropertiesByMaxRent(em,propertyData.getMaxRent());
-       if (allresults == null) return null;
+       if (allresults == null) return new ArrayList<>();
        return allresults;          
     }
     
