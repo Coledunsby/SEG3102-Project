@@ -12,6 +12,8 @@ import dbaccess.persistence.Customer;
 import dbaccess.persistence.OPR;
 import dbaccess.persistence.Owner;
 import dbaccess.persistence.Property;
+import dbaccess.persistence.Visitation;
+import dbaccess.persistence.VisitingList;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -104,8 +106,17 @@ public class LookupControl implements Serializable{
     public List<Property> viewProperties(){
         if (userData.getUser() instanceof Owner){
             List<Property> results = OPR.viewProperties(em, (Owner) userData.getUser());            
-            propertyData.setLookupResults(results);
             return results;
+        }
+        return null;
+    }
+    
+    public List<Visitation> viewVisitList(){
+        if (userData.getUser() instanceof Customer){
+            VisitingList visitingList = OPR.viewVisitingList(em, (Customer) userData.getUser());
+            if (visitingList != null) {
+                return visitingList.getVisits();
+            }
         }
         return null;
     }
@@ -155,12 +166,6 @@ public class LookupControl implements Serializable{
     public void viewAccount(){
         if (userData.getUser() != null){
             userData.setLookupResults(OPR.viewAccount(em, userData.getUser().getUserAccount()));
-        }
-    }
-    
-    public void viewVisitList(){
-        if (userData.getUser() instanceof Customer){
-            userData.setLookupResults(OPR.viewVisitingList(em, (Customer) userData.getUser()));
         }
     }
     
