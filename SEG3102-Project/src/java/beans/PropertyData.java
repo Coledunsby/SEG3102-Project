@@ -6,17 +6,18 @@
 package beans;
 
 import dbaccess.persistence.Property;
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 
 /**
  *
  * @author Cole
  */
 @Named(value = "propertyData")
-@RequestScoped
-public class PropertyData {
+@SessionScoped
+public class PropertyData implements Serializable {
     private String type;
     private String address;
     private String location;
@@ -140,6 +141,14 @@ public class PropertyData {
     
     public void setProperty(Property property){
         this.property = property;
+        this.type = property.getType();
+        this.address = property.getAddress();
+        this.location = property.getLocation();
+        this.numBathrooms = property.getNumBathrooms();
+        this.numBedrooms = property.getNumBedrooms();
+        this.numOtherRooms = property.getNumOtherRooms();
+        this.rent = property.getRent();
+        this.addStatus = "";
     }
     
     public void setLookupResults(List<Property> results) {
@@ -181,5 +190,17 @@ public class PropertyData {
 
     public void setAddStatus(String addStatus) {
         this.addStatus = addStatus;
+    }
+    
+    public void reset() {
+        this.property = null;
+        this.type = null;
+        this.address = null;
+        this.location = null;
+        this.numBathrooms = 0;
+        this.numBedrooms = 0;
+        this.numOtherRooms = 0;
+        this.rent = 0;
+        this.addStatus = null;
     }
 }

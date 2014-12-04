@@ -12,6 +12,8 @@ import dbaccess.persistence.Customer;
 import dbaccess.persistence.OPR;
 import dbaccess.persistence.Owner;
 import dbaccess.persistence.Property;
+import dbaccess.persistence.Visitation;
+import dbaccess.persistence.VisitingList;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -83,7 +85,12 @@ public class LookupControl implements Serializable{
     public void addProperty(){
         if (userData.getUser() instanceof Owner) {
             if (OPR.newProperty(em, utx, propertyData, (Owner) userData.getUser())) {
-                propertyData.setAddStatus("Property added!");
+                propertyData.reset();
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view_properties_owner.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(LookupControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 propertyData.setAddStatus("Failed to add property!");
             }
@@ -99,8 +106,17 @@ public class LookupControl implements Serializable{
     public List<Property> viewProperties(){
         if (userData.getUser() instanceof Owner){
             List<Property> results = OPR.viewProperties(em, (Owner) userData.getUser());            
-            propertyData.setLookupResults(results);
             return results;
+        }
+        return null;
+    }
+    
+    public List<Visitation> viewVisitList(){
+        if (userData.getUser() instanceof Customer){
+            VisitingList visitingList = OPR.viewVisitingList(em, (Customer) userData.getUser());
+            if (visitingList != null) {
+                return visitingList.getVisits();
+            }
         }
         return null;
     }
@@ -121,21 +137,35 @@ public class LookupControl implements Serializable{
         }
     }
     
+    public void prepareForUpdateProperty(Property property){
+        if (userData.getUser() instanceof Owner){
+            propertyData.setProperty(property);
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("update_property.xhtml");
+            } catch (IOException ex) {
+                Logger.getLogger(LookupControl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
     public void updateProperty(){
         if (userData.getUser() != null){
-            OPR.updateProperty(em, utx, propertyData.getProperty(), propertyData);
+            if (OPR.updateProperty(em, utx, propertyData.getProperty(), propertyData)) {
+                propertyData.reset();
+                try {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("view_properties_owner.xhtml");
+                } catch (IOException ex) {
+                    Logger.getLogger(LookupControl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                propertyData.setAddStatus("Property update failed.");
+            }
         }
     }
     
     public void viewAccount(){
         if (userData.getUser() != null){
             userData.setLookupResults(OPR.viewAccount(em, userData.getUser().getUserAccount()));
-        }
-    }
-    
-    public void viewVisitList(){
-        if (userData.getUser() instanceof Customer){
-            userData.setLookupResults(OPR.viewVisitingList(em, (Customer) userData.getUser()));
         }
     }
     

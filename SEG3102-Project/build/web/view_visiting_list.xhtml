@@ -10,41 +10,42 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h:dataTable value="#{customer.visitingList}" var="property" cellspacing="0" cellpadding="5"
-                             styleClass="employeeTable"
-                             headerClass="employeeTableHeader"
-                             rowClasses="employeeTableOddRow,employeeTableEvenRow" border="1">
+                <h:dataTable cellspacing="0" cellpadding="5" border="1" id="resultTable" value="#{lookupControl.viewVisitList()}" var="visit">
                     <h:column>    				
-                       <f:facet name="header">Photos</f:facet>    				
-                       #{property.photos}
+                       <f:facet name="header">Photos</f:facet>    
+                        <h:graphicImage id="photo1" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                        <h:graphicImage id="photo2" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                        <h:graphicImage id="photo3" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                        <h:graphicImage id="photo4" width="25" height="25" style="margin-right: 5px;" value="resources/thumbnail.png" />
+                        <h:graphicImage id="photo5" width="25" height="25" value="resources/thumbnail.png" />
                     </h:column>
                     <h:column>
                        <f:facet name="header">Type</f:facet>
-                       #{property.type}
+                       #{visit.property.type}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Address</f:facet>
-                       #{property.address}
+                       #{visit.property.address}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Location</f:facet>
-                       #{property.location}
+                       #{visit.property.location}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Bedrooms</f:facet>
-                       #{property.bedrooms}
+                       #{visit.property.numBedrooms}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Bathrooms</f:facet>
-                       #{property.bathrooms}
+                       #{visit.property.numBathrooms}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Other Rooms</f:facet>
-                       #{property.other}
+                       #{visit.property.numOtherRooms}
                     </h:column>
                     <h:column>
                        <f:facet name="header">Rent</f:facet>
-                       #{property.rent}
+                       #{visit.property.rent}
                     </h:column>
                 </h:dataTable>
             </ui:define>
