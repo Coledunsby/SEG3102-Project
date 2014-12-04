@@ -128,6 +128,7 @@ public class OPR implements Serializable{
         try{
             utx.begin();
             property.setActive(false);
+            em.merge(property);
             utx.commit();
             return true;
         } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
@@ -249,6 +250,7 @@ public class OPR implements Serializable{
             property.setNumBedrooms(propertyData.getNumBedrooms());
             property.setNumOtherRooms(propertyData.getNumOtherRooms());
             property.setRent(propertyData.getRent());
+            em.merge(property);
             utx.commit();
             return true;
         } catch(NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
