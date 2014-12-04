@@ -64,7 +64,7 @@
                             <hr/>
                             <hr/>
                                 <h:panelGroup id="results">
-                                    <h:dataTable  rendered="#{propertyData.showResults}" border="2" bgcolor="yellow" id="resultTable" value="#{propertyData.getLookupResults()}" var="property">                                    <h:column>    				
+                                    <h:dataTable  rendered="#{propertyData.getShowResults()}" cellpadding="5" border="1" id="resultTable" value="#{propertyData.getLookupResults()}" var="property">                                    <h:column>    				
                                         <f:facet name="header">Photos</f:facet>    				
                                     </h:column>
                                     <h:column>      
@@ -96,7 +96,7 @@
                                         #{property.rent}
                                     </h:column>
                                 </h:dataTable>
-                                <h:outputText rendered="#{propertyData.showMessage}" style="color:red" id="resultMessage" value="No Property Found"/>
+                                <h:outputText rendered="#{propertyData.getShowMessage()}" style="color:red" id="resultMessage" value="No Property Found"/>
                             </h:panelGroup>
                         </div>
                     </h:form>
