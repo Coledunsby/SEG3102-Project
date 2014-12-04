@@ -142,8 +142,12 @@ public class OPR implements Serializable{
                     + "where u.username = :username AND u.password = :password");
             query.setParameter("username", username);
             query.setParameter("password", password);
-            user = (UserAccount) performQuery(query).get(0);
-            return true;
+            List<UserAccount> users = performQuery(query);
+            boolean found = true;
+            if (users.isEmpty()){
+                found = false;
+            }
+            return found;
         
     }
     
