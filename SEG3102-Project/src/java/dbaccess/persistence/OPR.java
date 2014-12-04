@@ -259,13 +259,13 @@ public class OPR implements Serializable{
         
     }
     
-    public static List viewVisitingList(EntityManager em, Customer customer){
-        
-            String id = customer.getId();
-            Query query = em.createQuery("Select c.visitingList From Customer c "
-                    + "where c.id = :id");
-            query.setParameter("id", id);
-            return performQuery(query);
+    public static VisitingList viewVisitingList(EntityManager em, Customer customer){
+
+        String id = customer.getId();
+        Query query = em.createQuery("Select c.visitingList From Customer c "
+                + "where c.id = :id");
+        query.setParameter("id", id);
+        return (VisitingList) performQuery(query).get(0);
         
     }
 
