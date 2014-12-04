@@ -181,9 +181,9 @@ public class LookupControl implements Serializable{
             results = getPropertiesByBathRooms(em,propertyData);
         } else if(propertyData.getNumOtherRooms() != 0){
             results = getPropertiesByOtherRooms(em,propertyData);
-        } else if(propertyData.getMinRent() != -1){
+        } else if(propertyData.getMinRent() != 0){
             results = getPropertiesByMinRent(em,propertyData);
-        } else if(propertyData.getMaxRent() != -1){
+        } else if(propertyData.getMaxRent() != 0){
             results = getPropertiesByMaxRent(em,propertyData);
         }
         propertyData.setLookupResults(results);

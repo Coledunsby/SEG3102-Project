@@ -17,6 +17,7 @@
 
                             <h:outputText value="Location"></h:outputText>
                             <h:selectOneMenu id="location" value="#{propertyData.location}">
+                                <f:selectItem itemValue="" itemLabel="Any" />
                                 <f:selectItem itemValue="1" itemLabel="Zone 1" />
                                 <f:selectItem itemValue="2" itemLabel="Zone 2" />
                             </h:selectOneMenu>
@@ -24,6 +25,7 @@
                             
                             <h:outputText value="Type"></h:outputText>
                             <h:selectOneMenu id="type" value="#{propertyData.type}">
+                                <f:selectItem itemValue="" itemLabel="Any" />
                                 <f:selectItem itemValue="house" itemLabel="House" />
                                 <f:selectItem itemValue="apartment" itemLabel="Apartment" />
                             </h:selectOneMenu>
